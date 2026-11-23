@@ -1,0 +1,36 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Invitation {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  coupleNames String
+  eventDate   DateTime
+  venue       String
+  message     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  rsvps       Rsvp[]
+}
+
+model Rsvp {
+  id           String     @id @default(cuid())
+  invitationId String
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  name         String
+  phone        String?
+  attending    Boolean
+  guestCount   Int        @default(1)
+  message      String?
+  createdAt    DateTime   @default(now())
+
+  @@index([invitationId])
+}
