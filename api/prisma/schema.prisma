@@ -9,28 +9,79 @@ datasource db {
   provider = "postgresql"
 }
 
-model Invitation {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  coupleNames String
-  eventDate   DateTime
-  venue       String
-  message     String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  rsvps       Rsvp[]
+enum Language {
+  EN
+  HI
+  MR
 }
 
-model Rsvp {
+enum InvitationStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum Attendance {
+  ATTENDING
+  NOT_ATTENDING
+  MAYBE
+}
+
+model Client {
+  id          String       @id @default(cuid())
+  name        String
+  email       String       @unique
+  phone       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  invitations Invitation[]
+
+  @@map("clients")
+}
+
+model Invitation {
+  id          String           @id @default(cuid())
+  clientId    String
+  client      Client           @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  slug        String           @unique
+  title       String
+  language    Language         @default(EN)
+  status      InvitationStatus @default(DRAFT)
+  templateKey String           @default("classic")
+  config      Json             @default("{}")
+  eventDate   DateTime?
+  publishedAt DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  guests      Guest[]
+
+  @@index([clientId])
+  @@map("invitations")
+}
+
+model Guest {
   id           String     @id @default(cuid())
   invitationId String
   invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
   name         String
   phone        String?
-  attending    Boolean
-  guestCount   Int        @default(1)
-  message      String?
   createdAt    DateTime   @default(now())
+  rsvp         Rsvp?
 
-  @@index([invitationId])
+  @@unique([invitationId, phone])
+  @@index([phone])
+  @@map("guests")
+}
+
+model Rsvp {
+  id         String     @id @default(cuid())
+  guestId    String     @unique
+  guest      Guest      @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  attendance Attendance
+  guestCount Int        @default(1)
+  message    String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@map("rsvps")
 }

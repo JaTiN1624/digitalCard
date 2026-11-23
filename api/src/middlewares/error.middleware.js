@@ -14,6 +14,16 @@ export const errorHandler = (err, req, res, next) => {
     return res.status(409).json({ success: false, error: { message: "Resource already exists" } });
   }
 
+  // Foreign key failed (e.g. clientId doesn't exist)
+  if (err?.code === "P2003") {
+    return res.status(400).json({ success: false, error: { message: "Related record not found" } });
+  }
+
+  // Record to update/delete not found
+  if (err?.code === "P2025") {
+    return res.status(404).json({ success: false, error: { message: "Record not found" } });
+  }
+
   // Malformed JSON body
   if (err?.type === "entity.parse.failed") {
     return res.status(400).json({ success: false, error: { message: "Invalid JSON body" } });

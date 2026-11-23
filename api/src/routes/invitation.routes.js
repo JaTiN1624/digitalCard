@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getInvitation, createInvitation } from "../controllers/invitation.controller.js";
+import { getInvitation, createInvitation, publishInvitation } from "../controllers/invitation.controller.js";
 import { submitRsvp, listRsvps } from "../controllers/rsvp.controller.js";
 import { requireAdmin } from "../middlewares/auth.middleware.js";
 import { validate } from "../middlewares/validate.middleware.js";
@@ -17,6 +17,7 @@ router.post("/:slug/rsvps", validate({ params: slugParams, body: createRsvpBody 
 
 // Admin (x-api-key header)
 router.post("/", requireAdmin, validate({ body: createInvitationBody }), createInvitation);
+router.patch("/:slug/publish", requireAdmin, validate({ params: slugParams }), publishInvitation);
 router.get("/:slug/rsvps", requireAdmin, validate({ params: slugParams }), listRsvps);
 
 export default router;
