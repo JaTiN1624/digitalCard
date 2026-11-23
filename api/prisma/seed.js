@@ -14,4 +14,27 @@ const client = await prisma.client.upsert({
 
 console.log("Demo client id: ", client.id);
 
+// A published demo invitation to open at http://localhost:5173/i/rahul-weds-priya
+const invitation = await prisma.invitation.upsert({
+    where: { slug: "rahul-weds-priya" },
+    update: {},
+    create: {
+        clientId: client.id,
+        slug: "rahul-weds-priya",
+        title: "Rahul & Priya",
+        language: "EN",
+        status: "PUBLISHED",
+        publishedAt: new Date(),
+        eventDate: new Date("2027-02-14T18:30:00+05:30"),
+        config: {
+            groom: "Rahul",
+            bride: "Priya",
+            venue: "The Grand Palace, Pune",
+            message: "Your presence is the greatest gift of all.",
+        },
+    },
+});
+
+console.log("Demo invitation: /i/" + invitation.slug);
+
 await prisma.$disconnect();
