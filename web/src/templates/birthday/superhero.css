@@ -1,0 +1,129 @@
+/* ================= Superhero adventure ================= */
+.tpl-bday-superhero {
+  --bg: #0f1c3f;
+  --surface: #ffffff;
+  --text: #f4f6ff;
+  --muted: #c7d0ef;
+  --accent: #ffd60a;
+  --accent-contrast: #111827;
+  --gold: #ffd60a;
+  --border: #111827;
+  --heading: #ffd60a;
+  --eyebrow: #ff6b6b;
+  --radius: 4px;
+  --btn-radius: 4px;
+  --bday-name-font: var(--fun);
+  --bday-name-weight: 800;
+  --display: var(--fun);
+  --age-color: #ffd60a;
+  --age-glow: 5px 5px 0 #e63946, 10px 10px 0 #111827;
+  --comic-bg: #ffd60a;
+  --cover-bg:
+    repeating-conic-gradient(from 0deg at 50% 55%, rgba(255, 255, 255, 0.07) 0 6deg, transparent 6deg 14deg),
+    radial-gradient(circle at 50% 55%, #2b59c3, #0f1c3f 70%);
+  --cover-ink: #fff;
+  --cover-accent: #ffd60a;
+  --cover-muted: #c7d0ef;
+  --celebrate-bg: #e63946;
+  --reception-bg: #e63946;
+
+  /* comic action lines behind the page */
+  background:
+    repeating-conic-gradient(from 0deg at 50% 18%, rgba(255, 255, 255, 0.05) 0 5deg, transparent 5deg 12deg),
+    radial-gradient(circle at 50% 18%, #2b59c3, #0f1c3f 65%);
+}
+
+.tpl-bday-superhero .bday-name {
+  text-transform: uppercase;
+  text-shadow: 4px 4px 0 #e63946, 8px 8px 0 #111827;
+  letter-spacing: 0.02em;
+}
+
+.tpl-bday-superhero .bday-line {
+  display: inline-block;
+  padding: 4px 16px;
+  color: #111827;
+  background: #ffd60a;
+  border: 3px solid #111827;
+  transform: rotate(-3deg);
+  box-shadow: 4px 4px 0 #111827;
+}
+
+.hero-art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-figure {
+  width: 52%;
+  filter: drop-shadow(6px 6px 0 rgba(0, 0, 0, 0.35));
+  animation: hero-hover 2.6s ease-in-out infinite;
+}
+
+.hero-bolt {
+  width: 16%;
+  animation: bolt-zap 1.8s steps(1) infinite;
+}
+
+.hero-bolt.right {
+  animation-delay: 0.9s;
+}
+
+@keyframes hero-hover {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bolt-zap {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  10% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+/* Sections as comic panels */
+.tpl-bday-superhero .sec .date-card,
+.tpl-bday-superhero .event-card,
+.tpl-bday-superhero .venue-card,
+.tpl-bday-superhero .sec-rsvp .rsvp,
+.tpl-bday-superhero .contact-card,
+.tpl-bday-superhero .dresscode-text,
+.tpl-bday-superhero .countdown-unit {
+  color: #111827;
+  border: 3px solid #111827;
+  box-shadow: 6px 6px 0 #111827;
+  --muted: #4b5563;
+  --accent: #e63946;
+  --heading: #1d4ed8;
+}
+
+.tpl-bday-superhero .rsvp-form input:not([type="radio"]),
+.tpl-bday-superhero .rsvp-form textarea {
+  background: #fff;
+  color: #111827;
+  border: 2px solid #111827;
+}
+
+.tpl-bday-superhero .rsvp-form button {
+  background: #e63946;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-figure,
+  .hero-bolt {
+    animation: none;
+  }
+}

@@ -1,0 +1,272 @@
+/* ================= Shared template layout =================
+   Each theme lives in its own file (royal.css, floral.css, ...) and sets the variables below.
+   Fonts are loaded in index.html; Devanagari falls back to Tiro Devanagari / system fonts. */
+.tpl {
+  --display: "Cormorant Garamond", "Tiro Devanagari Hindi", Georgia, "Nirmala UI", serif;
+  --script: "Great Vibes", "Tiro Devanagari Hindi", "Cormorant Garamond", cursive;
+  --caps: "Cinzel", "Tiro Devanagari Hindi", Georgia, serif;
+  --serif: "Cormorant Garamond", "Tiro Devanagari Hindi", Georgia, "Nirmala UI", serif;
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: clip;
+  font-size: 1.04rem;
+}
+
+.tpl:lang(mr) {
+  --display: "Cormorant Garamond", "Tiro Devanagari Marathi", "Tiro Devanagari Hindi", Georgia, "Nirmala UI", serif;
+  --script: "Great Vibes", "Tiro Devanagari Marathi", "Tiro Devanagari Hindi", cursive;
+  --caps: "Cinzel", "Tiro Devanagari Marathi", Georgia, serif;
+  --serif: var(--display);
+}
+
+.tpl-inner {
+  position: relative;
+  z-index: 1; /* above the background particles */
+  max-width: var(--page-max, 760px);
+  margin: 0 auto;
+}
+
+/* The opened invitation fades in and lands at the top of the page */
+.tpl-content {
+  scroll-margin-top: 0;
+}
+
+/* A framed card that holds a hero */
+.tpl .stage {
+  padding: 40px 16px 8px;
+}
+
+.tpl .card {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 12px);
+  text-align: center;
+}
+
+/* "Scroll" hint at the bottom of full-screen heroes */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  translate: -50% 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--eyebrow, var(--muted));
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.floral-intro .scroll-cue {
+  position: static;
+  translate: none;
+  margin-top: 18px;
+}
+
+.scroll-cue-line {
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(currentColor, transparent);
+  transform-origin: top;
+  animation: cue-line 2s ease-in-out infinite;
+}
+
+@keyframes cue-line {
+  0% {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* ================= Hero ================= */
+.hero {
+  text-align: center;
+}
+
+.hero-media {
+  margin-bottom: 22px;
+}
+
+.hero .eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.tpl:lang(hi) .hero .eyebrow,
+.tpl:lang(mr) .hero .eyebrow {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.hero .invite-line {
+  max-width: 26em;
+  margin: 0 auto;
+}
+
+.hero .couple {
+  margin: 16px 0;
+  color: var(--heading, var(--accent));
+  font-family: var(--script);
+  font-size: clamp(2.6rem, 11vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.tpl:lang(hi) .hero .couple,
+.tpl:lang(mr) .hero .couple {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 9vw, 3.4rem);
+}
+
+.hero .parents {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.hero .parents p {
+  margin: 2px 0;
+}
+
+.hero .event-date {
+  margin: 26px 0 4px;
+  font-family: var(--display);
+  font-size: 1.25rem;
+}
+
+.hero .venue {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ================= Message + hashtag ================= */
+.message {
+  max-width: 32em;
+  margin: 0 auto;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.tpl:lang(hi) .message,
+.tpl:lang(mr) .message {
+  font-style: normal;
+  font-size: 1.2rem;
+}
+
+.message::before,
+.message::after {
+  color: var(--gold);
+  font-size: 1.6em;
+  line-height: 0;
+  vertical-align: -0.3em;
+}
+
+.message::before {
+  content: "“";
+  margin-right: 0.1em;
+}
+
+.message::after {
+  content: "”";
+  margin-left: 0.1em;
+}
+
+.hashtag {
+  margin: 14px 0 0;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* ================= Scroll reveal (CSS, used by Hero) ================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ================= Classic ================= */
+.tpl-classic {
+  --bg: #fdf8f3;
+  --surface: #ffffff;
+  --text: #3d3530;
+  --muted: #6f645d;
+  --accent: #9c2f3f;
+  --accent-contrast: #ffffff;
+  --gold: #a87d2f;
+  --border: #e8dcd2;
+
+  --obj-paper: #fffdf8;
+  --obj-ink: #7d2433;
+  --obj-gold: #c29a53;
+  --obj-accent: #9c2f3f;
+  --obj-accent-2: #f1e3d6;
+  --obj-accent-3: #b2404f;
+  --cover-bg: radial-gradient(circle at 50% 30%, #fff, #f6ebe0 75%);
+}
+
+.tpl-classic .card {
+  border-top: 4px solid var(--gold);
+  box-shadow: 0 10px 30px -18px rgba(61, 53, 48, 0.35);
+}
+
+.tpl-classic .sec:nth-child(even) {
+  background: #f8efe6;
+}
+
+/* ================= Devanagari safety net =================
+   Letter-spacing pulls Devanagari conjuncts and matras apart ("सा ल"), so Hindi and Marathi
+   invitations never use it, whatever a theme sets for its English small caps. */
+.tpl:lang(hi),
+.tpl:lang(hi) *,
+.tpl:lang(mr),
+.tpl:lang(mr) * {
+  letter-spacing: normal !important;
+}
+
+/* ================= Accessibility ================= */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tpl .card {
+    padding: 36px 16px;
+  }
+}

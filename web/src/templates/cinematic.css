@@ -1,0 +1,193 @@
+/* ================= Cinematic Love Story =================
+   Midnight blue and black with champagne gold; film-title typography. */
+.tpl-cinematic {
+  --bg: #060b18;
+  --surface: #0e1630;
+  --text: #f1e5c6;
+  --muted: #c4b796;
+  --accent: #e2c27a;
+  --accent-contrast: #060b18;
+  --gold: #d6b36c;
+  --border: #2e3a63;
+  --heading: #f1dca6;
+  --eyebrow: #b9a77c;
+  --error: #ffb4a9;
+  --success: #b9e3b5;
+  --radius: 4px;
+  --btn-radius: 2px;
+  --display-weight: 400;
+  --bokeh: rgba(150, 175, 255, 0.18);
+
+  --cover-bg: radial-gradient(circle at 50% 40%, #16203d, #03050b 75%);
+  --cover-ink: #f1e5c6;
+  --cover-accent: #e2c27a;
+  --cover-muted: #b9a77c;
+  --obj-gold: #e2c27a;
+
+  --reception-bg: linear-gradient(160deg, #182447, #070c1a);
+  --reception-ink: #f1e5c6;
+  --reception-title: #f1dca6;
+
+  background:
+    radial-gradient(circle at 50% 10%, rgba(38, 59, 103, 0.65), transparent 50%),
+    var(--bg);
+}
+
+/* Full-screen opening shot */
+.cine-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cine-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 35%, #2b3b6b, transparent 60%),
+    linear-gradient(180deg, #0b1224, #03060f);
+}
+
+.cine-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 30%; /* keep faces in frame on tall phone screens */
+  animation: ken-burns 26s ease-in-out infinite alternate;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.16) translate3d(-2%, -2%, 0);
+  }
+}
+
+.cine-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(3, 6, 15, 0.6), rgba(3, 6, 15, 0.5) 45%, rgba(3, 6, 15, 0.9)),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.6));
+}
+
+.cine-titles {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+.cine-kicker {
+  margin: 0;
+  color: #efe3c4;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  font-size: 0.78rem;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+}
+
+.cine-title {
+  margin: 14px 0 0;
+  color: var(--heading);
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+}
+
+.tpl-cinematic:lang(hi) :is(.cine-kicker, .cine-title),
+.tpl-cinematic:lang(mr) :is(.cine-kicker, .cine-title) {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.tpl-cinematic:lang(hi) .cine-kicker,
+.tpl-cinematic:lang(mr) .cine-kicker {
+  font-size: 1rem;
+}
+
+.cine-divider {
+  display: block;
+  height: 1px;
+  margin: 26px auto;
+  background: var(--gold);
+}
+
+.cine-names {
+  margin: 0;
+  color: #fff5dc;
+  font-family: var(--script);
+  font-size: clamp(3rem, 13vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.tpl-cinematic:lang(hi) .cine-names,
+.tpl-cinematic:lang(mr) .cine-names {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 10vw, 3.8rem);
+}
+
+.cine-closing {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.cine-invite {
+  padding-top: 72px;
+}
+
+.cine-parents {
+  margin: 14px 0;
+  color: var(--muted);
+}
+
+.cine-parents p {
+  margin: 2px 0;
+}
+
+.cine-invite-line {
+  max-width: 26em;
+  margin: 0 auto;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-style: italic;
+}
+
+.tpl-cinematic .sec-title {
+  letter-spacing: 0.04em;
+}
+
+.tpl-cinematic .story-image {
+  aspect-ratio: 16 / 10;
+  max-width: 640px;
+}
+
+/* The finale date gets a widescreen treatment */
+.tpl-cinematic .date-card {
+  border-color: rgba(214, 179, 108, 0.5);
+  background: radial-gradient(circle at 50% 0%, #1b2850, #0b1226);
+}
+
+.tpl-cinematic .rsvp-form input:not([type="radio"]),
+.tpl-cinematic .rsvp-form textarea {
+  background: #060b18;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cine-bg img {
+    animation: none;
+  }
+}

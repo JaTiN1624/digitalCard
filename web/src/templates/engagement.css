@@ -1,0 +1,79 @@
+/* ================= Engagement =================
+   Champagne gold and blush on ivory, with a deep plum night for the opening. */
+.tpl-engagement {
+  --bg: #fbf5ef;
+  --surface: #ffffff;
+  --text: #3b2a2c;
+  --muted: #76615f;
+  --accent: #8e5a3c;
+  --accent-contrast: #ffffff;
+  --gold: #b88a4a;
+  --border: #efdcd2;
+  --heading: #7a4a31;
+  --eyebrow: #a57c63;
+  --radius: 16px;
+  --heart: #f0b3bd;
+  --gold-dust: #f3d08f;
+  --shimmer-a: #a8743a;
+  --shimmer-b: #f0cf8e;
+
+  --cover-bg: radial-gradient(circle at 50% 45%, #4b2b3c, #1d1018 72%);
+  --cover-ink: #f6e6d8;
+  --cover-accent: #f0cf8e;
+  --cover-muted: #e2c3b4;
+  --obj-paper: #f6e6dc;
+  --obj-gold: #edcd8a;
+  --obj-accent: #5a2f45;
+  --obj-accent-2: #c79aa6;
+
+  --reception-bg: linear-gradient(150deg, #5a2f45, #2c1622);
+  --reception-ink: #f6e6d8;
+  --reception-title: #f0cf8e;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(240, 179, 189, 0.35), transparent 50%),
+    var(--bg);
+}
+
+.tpl-engagement .sec:nth-child(even) {
+  background: #f8ece6;
+}
+
+.eng-hero {
+  padding: 72px 20px 56px;
+  text-align: center;
+}
+
+.eng-ring {
+  position: relative;
+  width: 110px;
+  margin: 0 auto 18px;
+  color: var(--gold);
+}
+
+.eng-glow {
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 228, 170, 0.75), transparent 62%);
+  animation: glow-pulse 2.8s ease-in-out infinite;
+}
+
+.eng-ring .motif {
+  position: relative;
+}
+
+.tpl-engagement .hero .couple {
+  font-size: clamp(3rem, 13vw, 4.6rem);
+}
+
+/* Cover: blush and champagne on the night backdrop */
+.tpl-engagement .rb-lid .cover-small {
+  color: #f6e6d8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eng-glow {
+    animation: none;
+  }
+}

@@ -1,0 +1,175 @@
+/* ================= Royal Maharaja =================
+   Deep maroon, antique gold and ivory; Cinzel capitals with Cormorant italics. */
+.tpl-royal {
+  --bg: #24080e;
+  --surface: #36101a;
+  --text: #f6e7c8;
+  --muted: #d9c29b;
+  --accent: #e3bb63;
+  --accent-contrast: #2b0a11;
+  --gold: #e0b65a;
+  --border: #6e3d2a;
+  --heading: #f1d48d;
+  --eyebrow: #d9b36a;
+  --error: #ffb4a9;
+  --success: #b9e3b5;
+  --radius: 4px;
+  --btn-radius: 2px;
+  --display: var(--caps);
+  --display-weight: 400;
+  --shimmer-a: #c8963e;
+  --shimmer-b: #fbe7a8;
+
+  --cover-bg:
+    radial-gradient(circle at 50% 35%, rgba(224, 182, 90, 0.18), transparent 55%),
+    radial-gradient(circle at 50% 120%, #4a0f1c, #1a0509 70%);
+  --cover-ink: #f6e7c8;
+  --cover-accent: #f1d48d;
+  --cover-muted: #d9b36a;
+  --obj-paper: #fbf1dc;
+  --obj-ink: #5a1422;
+  --obj-gold: #e2bd6a;
+  --obj-accent: #5c1424;
+  --obj-accent-2: #3d0c17;
+
+  --reception-bg: linear-gradient(160deg, #4c1220, #2a0810);
+  --reception-ink: #f6e7c8;
+  --reception-title: #f1d48d;
+  --parchment-a: #fbf2dd;
+  --parchment-b: #efd9ae;
+  --ribbon-ink: #3d0c17;
+  --ribbon-accent: #7a1a2b;
+  --ribbon-muted: #7a5a3a;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224, 182, 90, 0.16), transparent 55%),
+    var(--bg);
+}
+
+.tpl-royal .sec-title {
+  font-size: clamp(1.6rem, 6.5vw, 2.3rem);
+  letter-spacing: 0.06em;
+}
+
+.tpl-royal:lang(hi) .sec-title,
+.tpl-royal:lang(mr) .sec-title {
+  letter-spacing: 0;
+}
+
+.tpl-royal .sec:nth-child(even) {
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22), transparent);
+}
+
+/* Framed hero card */
+.tpl-royal .frame {
+  padding: 56px 22px 44px;
+  border: 1px solid var(--gold);
+  background:
+    radial-gradient(circle at top, rgba(112, 33, 38, 0.95), transparent 65%),
+    linear-gradient(150deg, #3a0c17, #5a1220 50%, #2a0810);
+  box-shadow:
+    0 0 0 6px #24080e,
+    0 0 0 7px rgba(224, 182, 90, 0.5),
+    0 30px 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+.royal-corner {
+  position: absolute;
+  width: 54px;
+  color: var(--gold);
+}
+
+.royal-corner.tl {
+  top: 10px;
+  left: 10px;
+}
+
+.royal-corner.tr {
+  top: 10px;
+  right: 10px;
+}
+
+.royal-corner.bl {
+  bottom: 10px;
+  left: 10px;
+}
+
+.royal-corner.br {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* motion animates transform on the wrapper, so mirror the svg inside instead */
+.royal-corner.tr .motif {
+  transform: scaleX(-1);
+}
+
+.royal-corner.bl .motif {
+  transform: scaleY(-1);
+}
+
+.royal-corner.br .motif {
+  transform: scale(-1, -1);
+}
+
+.royal-crown {
+  width: 64px;
+  margin: 0 auto 10px;
+  color: var(--gold);
+  filter: drop-shadow(0 0 12px rgba(240, 200, 110, 0.45));
+}
+
+.tpl-royal .blessing {
+  margin: 0;
+  color: var(--gold);
+  font-family: var(--caps);
+  font-size: 1.05rem;
+}
+
+.royal-title {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.tpl-royal:lang(hi) .royal-title,
+.tpl-royal:lang(mr) .royal-title {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.royal-divider {
+  width: 200px;
+  margin: 18px auto;
+  color: var(--gold);
+}
+
+.tpl-royal .hero .couple {
+  font-family: var(--caps);
+  font-size: clamp(2.1rem, 9vw, 3.2rem);
+  letter-spacing: 0.04em;
+}
+
+.tpl-royal .hero .couple .nr-amp {
+  font-family: var(--script);
+  font-size: 0.8em;
+}
+
+.tpl-royal .rsvp-form input:not([type="radio"]),
+.tpl-royal .rsvp-form textarea {
+  background: #24080e;
+}
+
+/* Cover: crown emblem on the velvet book */
+.tpl-royal .book-front .cover-initials {
+  font-family: var(--caps);
+  font-size: 2.1rem;
+  letter-spacing: 0.08em;
+}
+
+.tpl-royal .book-names {
+  font-family: var(--caps);
+  font-size: 1.5rem;
+}

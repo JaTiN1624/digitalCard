@@ -1,0 +1,128 @@
+/* ================= Destination Wedding =================
+   Lagoon teal, sand and sunset coral; travel-poster typography over full-screen photography. */
+.tpl-destination {
+  --bg: #f7f1e7;
+  --surface: #ffffff;
+  --text: #1d3236;
+  --muted: #5b6e70;
+  --accent: #1f6f78;
+  --accent-contrast: #ffffff;
+  --gold: #d9935f;
+  --border: #e3d8c5;
+  --heading: #1f5d65;
+  --eyebrow: #b8693b;
+  --radius: 14px;
+  --bokeh: rgba(255, 196, 140, 0.3);
+
+  --cover-bg:
+    radial-gradient(circle at 70% 20%, rgba(255, 196, 140, 0.55), transparent 40%),
+    linear-gradient(180deg, #8fc6c8, #f1d3b0);
+  --cover-ink: #12343a;
+  --cover-accent: #12454d;
+  --cover-muted: #2f5a60;
+  --obj-paper: #fffdf7;
+  --obj-ink: #13343b;
+  --obj-accent: #1f6f78;
+
+  --reception-bg: linear-gradient(150deg, #1f6f78, #12454d);
+
+  background: var(--bg);
+}
+
+.tpl-destination .sec:nth-child(even) {
+  background: #efe6d6;
+}
+
+.dest-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+}
+
+.dest-bg {
+  position: absolute;
+  inset: -10% 0 0;
+  background:
+    radial-gradient(circle at 70% 25%, rgba(255, 214, 160, 0.8), transparent 35%),
+    linear-gradient(180deg, #2c7f86 0%, #7ab8b6 45%, #e9c39b 75%, #c98a5c 100%);
+}
+
+.dest-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 60%;
+}
+
+.dest-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 30, 35, 0.35), rgba(10, 30, 35, 0.15) 45%, rgba(10, 30, 35, 0.65));
+}
+
+.dest-titles {
+  position: relative;
+  z-index: 1;
+  padding: 0 18px;
+}
+
+.dest-kicker {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.dest-place {
+  margin: 12px 0;
+  color: #fff;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 12vw, 5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+
+.tpl-destination:lang(hi) :is(.dest-place, .dest-kicker),
+.tpl-destination:lang(mr) :is(.dest-place, .dest-kicker) {
+  text-transform: none;
+  letter-spacing: 0.04em !important;
+}
+
+.dest-dates {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.dest-palm {
+  width: 56px;
+  margin: 0 auto;
+  color: var(--accent);
+}
+
+.tpl-destination .stage {
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+}
+
+.tpl-destination .card {
+  box-shadow: 0 26px 50px -24px rgba(20, 50, 55, 0.45);
+}
+
+.tpl-destination .hero .couple {
+  color: var(--heading);
+}
+
+.dest-hero .scroll-cue {
+  color: #fff;
+}

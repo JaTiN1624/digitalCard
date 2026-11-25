@@ -1,0 +1,164 @@
+/* ================= Pre-Wedding Celebration =================
+   Haldi yellow, marigold orange, rani pink and mehendi green on a warm ivory ground. */
+.tpl-prewedding {
+  --bg: #fff8e8;
+  --surface: #ffffff;
+  --text: #3e2a14;
+  --muted: #7a5a33;
+  --accent: #c2185b;
+  --accent-contrast: #ffffff;
+  --gold: #e8960c;
+  --border: #f3dcae;
+  --heading: #b3164f;
+  --eyebrow: #b86a00;
+  --radius: 20px;
+  --petal-a: #ff9ec0;
+  --petal-b: #ec4f8a;
+
+  --cover-bg:
+    radial-gradient(circle at 20% 15%, #ffe28a, transparent 35%),
+    radial-gradient(circle at 85% 85%, #ffc2d6, transparent 35%),
+    #fff3d6;
+  --cover-accent: #b3164f;
+  --obj-paper: #fffaf0;
+  --obj-ink: #b3164f;
+  --obj-gold: #f0b020;
+  --obj-accent: #e8650f;
+  --obj-accent-2: #ffd36b;
+  --obj-accent-3: #f5841f;
+  --seal: #b3164f;
+  --seal-hi: #e64b84;
+
+  --reception-bg: linear-gradient(150deg, #c2185b, #7b1fa2);
+
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 210, 80, 0.35), transparent 40%),
+    radial-gradient(circle at 100% 30%, rgba(255, 140, 180, 0.25), transparent 40%),
+    var(--bg);
+}
+
+.tpl-prewedding .sec:nth-child(even) {
+  background:
+    radial-gradient(circle, rgba(232, 150, 12, 0.14) 2px, transparent 2.5px) 0 0 / 26px 26px,
+    #fff2d4;
+}
+
+.pw-hero {
+  position: relative;
+  padding: 0 20px 56px;
+  text-align: center;
+}
+
+.pw-toran {
+  margin: 0 -24px 18px;
+}
+
+.pw-toran .toran {
+  height: 86px;
+}
+
+.pw-flower {
+  width: 78px;
+  margin: 8px auto 0;
+  color: #f39a12;
+}
+
+.pw-occasion {
+  margin: 10px 0 6px;
+  color: var(--heading);
+  font-family: var(--script);
+  font-size: clamp(2.8rem, 12vw, 4.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.tpl-prewedding:lang(hi) .pw-occasion,
+.tpl-prewedding:lang(mr) .pw-occasion {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 9vw, 3.2rem);
+}
+
+/* Little equaliser: a nod to the music of Sangeet */
+.pw-beats {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  height: 26px;
+  margin: 4px 0 22px;
+}
+
+.pw-beats span {
+  width: 5px;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(#ec4f8a, #f39a12);
+  transform-origin: bottom;
+  animation: beat 1.1s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.17s);
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.tpl-prewedding .hero .couple {
+  color: #3e2a14;
+}
+
+/* Function cards colour-coded by type */
+.tpl-prewedding .event-card {
+  border-width: 0;
+  border-top: 6px solid var(--ev, var(--gold));
+  box-shadow: 0 14px 30px -18px rgba(120, 70, 10, 0.4);
+}
+
+.tpl-prewedding .event-icon {
+  color: var(--ev, var(--gold));
+}
+
+.tpl-prewedding .event-name {
+  color: var(--ev-ink, var(--heading));
+}
+
+.tpl-prewedding .ev-haldi {
+  --ev: #f2b705;
+  --ev-ink: #9a6a00;
+  background: #fffbea;
+}
+
+.tpl-prewedding .ev-mehendi {
+  --ev: #3f8f3a;
+  --ev-ink: #2d6b29;
+  background: #f4fbef;
+}
+
+.tpl-prewedding .ev-sangeet {
+  --ev: #8e44ad;
+  --ev-ink: #6c2f86;
+  background: #faf3fd;
+}
+
+.tpl-prewedding .ev-cocktail {
+  --ev: #12848f;
+  --ev-ink: #0d6670;
+  background: #eefafa;
+}
+
+.tpl-prewedding .ev-engagement {
+  --ev: #c2185b;
+  background: #fff3f7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pw-beats span {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+}

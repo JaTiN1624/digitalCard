@@ -1,0 +1,95 @@
+/* ================= Minimal modern birthday ================= */
+.tpl-bday-modern {
+  --bg: #f6f3ee;
+  --surface: #fbf9f6;
+  --text: #2c2a28;
+  --muted: #77706a;
+  --accent: #2c2a28;
+  --accent-contrast: #fbf9f6;
+  --gold: #c9a48a;
+  --border: #e4ddd3;
+  --heading: #2c2a28;
+  --eyebrow: #a07d65;
+  --radius: 0;
+  --btn-radius: 0;
+  --bday-name-font: var(--display);
+  --bday-name-weight: 400;
+  --age-color: #c9a48a;
+  --sec-pad: 88px 24px;
+  --cover-bg: #ece6dc;
+  --cover-accent: #2c2a28;
+  --obj-paper: #fdfbf7;
+  --obj-ink: #2c2a28;
+  --obj-gold: #c9a48a;
+  --obj-accent: #e7dfd2;
+  --obj-accent-2: #f4efe7;
+  --celebrate-bg: #2c2a28;
+  --celebrate-ink: #fbf9f6;
+  --reception-bg: #2c2a28;
+}
+
+.tpl-bday-modern .bday-hero {
+  padding-top: 80px;
+}
+
+.tpl-bday-modern .bday-name {
+  font-size: clamp(3.6rem, 18vw, 6.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.tpl-bday-modern .bday-line {
+  font-family: var(--display);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.tpl-bday-modern .age-number {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(5rem, 30vw, 9rem);
+}
+
+.modern-rule {
+  display: block;
+  width: 56px;
+  height: 1px;
+  margin: 0 auto;
+  background: var(--gold);
+}
+
+.tpl-bday-modern .book-front {
+  color: #2c2a28;
+  background:
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.02) 0 2px, transparent 2px 5px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08), transparent 7%),
+    #e9e2d6;
+}
+
+.tpl-bday-modern .book-corner {
+  display: none;
+}
+
+.tpl-bday-modern .date-card,
+.tpl-bday-modern .event-card,
+.tpl-bday-modern .venue-card,
+.tpl-bday-modern .sec-rsvp .rsvp,
+.tpl-bday-modern .contact-card,
+.tpl-bday-modern .dresscode-text {
+  background: transparent;
+}
+
+.tpl-bday-modern .countdown-unit {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--gold);
+}
+
+.tpl-bday-modern .celebrate-btn {
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: none;
+}

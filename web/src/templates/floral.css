@@ -1,0 +1,115 @@
+/* ================= Pastel Floral =================
+   Blush, peach, ivory and sage; Great Vibes script names with Cormorant italics. */
+.tpl-floral {
+  --bg: #fff8f5;
+  --surface: #ffffff;
+  --text: #4f3439;
+  --muted: #7a5f63;
+  --accent: #711e36;
+  --accent-contrast: #ffffff;
+  --gold: #b48a46;
+  --border: #ecd8d6;
+  --heading: #711e36;
+  --eyebrow: #9b6972;
+  --radius: 18px;
+  --display-style: italic;
+  --petal-a: #f8c6d1;
+  --petal-b: #e891a8;
+  --leaf-a: #c8d8b9;
+  --leaf-b: #8fac82;
+
+  --cover-bg:
+    radial-gradient(circle at 15% 20%, #fff 0, transparent 30%),
+    radial-gradient(circle at 85% 80%, #f6d2da 0, transparent 35%),
+    linear-gradient(180deg, #fff8f5, #f8e6ea);
+  --cover-accent: #711e36;
+  --obj-paper: #fffaf4;
+  --obj-ink: #711e36;
+  --obj-gold: #d3b47c;
+  --obj-accent: #7e2a42;
+  --obj-accent-2: #f0d2d8;
+  --obj-accent-3: #9a3b56;
+
+  --reception-bg:
+    radial-gradient(circle at top, #9b465d, transparent 65%),
+    linear-gradient(145deg, #7d2941, #501529);
+  --reception-ink: #fff1e8;
+  --reception-title: #f3d7a4;
+
+  background:
+    radial-gradient(ellipse at 10% 10%, #fff9f5 0, transparent 38%),
+    radial-gradient(ellipse at 90% 35%, #f8e0e5 0, transparent 40%),
+    linear-gradient(180deg, #fff8f5, #f8e8eb);
+}
+
+.tpl-floral .sec:nth-child(even) {
+  background: rgba(247, 232, 233, 0.7);
+}
+
+/* Couple introduction under an arch */
+.floral-intro {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 56px 20px 40px;
+  text-align: center;
+}
+
+.floral-arch {
+  width: min(250px, 66vw);
+  aspect-ratio: 13 / 16;
+  overflow: hidden;
+  border: 7px solid #fff;
+  outline: 1px solid #d5b77f;
+  border-radius: 50% 50% 10px 10px / 40% 40% 10px 10px;
+  box-shadow: 0 18px 36px -18px rgba(112, 68, 74, 0.45);
+}
+
+.floral-arch .cine-image {
+  width: 100%;
+  height: 100%;
+}
+
+.floral-arch img {
+  object-position: 50% 25%;
+}
+
+.floral-arch-empty {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 26%;
+  color: #c97f91;
+  background:
+    radial-gradient(circle at 50% 35%, #fff, transparent 60%),
+    linear-gradient(160deg, #fbe7ea, #efd0d5);
+}
+
+.tpl-floral .hero .couple {
+  font-size: clamp(3rem, 13vw, 4.6rem);
+}
+
+/* Scroll cue shared look */
+.tpl-floral .scroll-cue {
+  color: var(--eyebrow);
+}
+
+/* Event cards: soft rounded, alternating blush tint */
+.tpl-floral .event-card:nth-child(even) {
+  background: #fff6f6;
+}
+
+.tpl-floral .event-name,
+.tpl-floral .venue-name,
+.tpl-floral .timeline-title {
+  font-style: italic;
+}
+
+.tpl-floral .countdown-unit {
+  aspect-ratio: 1;
+  justify-content: center;
+  border-radius: 50%;
+}

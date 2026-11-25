@@ -1,17 +1,20 @@
+/* Base styles + RSVP form. Template themes live in src/templates/templates.css
+   and override these variables inside .tpl-* */
 :root {
   --bg: #fdf8f3;
   --surface: #ffffff;
   --text: #3d3530;
-  --muted: #7a6f68;
+  --muted: #6f645d;
   --accent: #9c2f3f;
-  --accent-soft: #f4e4e1;
+  --accent-contrast: #ffffff;
   --gold: #b58a3c;
   --border: #e8dcd2;
   --error: #b3261e;
   --success: #2e6b3f;
 
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --devanagari: "Nirmala UI", "Noto Sans Devanagari", "Mangal", sans-serif;
+  --serif: Georgia, "Times New Roman", "Noto Serif Devanagari", "Nirmala UI", serif;
+  --sans: system-ui, "Segoe UI", Roboto, var(--devanagari);
 
   font: 16px/1.6 var(--sans);
   color: var(--text);
@@ -34,7 +37,7 @@ h2,
 h3 {
   font-family: var(--serif);
   color: var(--accent);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 a {
@@ -60,63 +63,18 @@ a {
   color: var(--muted);
 }
 
-/* Invitation card */
-.invitation {
-  text-align: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: 4px solid var(--gold);
-  border-radius: 12px;
-  padding: 48px 24px;
-}
-
-.invitation h1 {
-  font-size: clamp(2rem, 7vw, 3rem);
-  margin: 12px 0;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-.event-date {
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  margin: 28px 0 4px;
-}
-
-.venue {
-  margin: 0;
-  color: var(--muted);
-}
-
-.message {
-  margin-top: 24px;
-  font-style: italic;
-}
-
-/* RSVP */
-.rsvp {
-  margin-top: 32px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px 24px;
-}
-
-.rsvp h3 {
-  margin-top: 0;
-  text-align: center;
-}
-
+/* ---------- RSVP form (themed by template variables) ---------- */
 .rsvp-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-align: left;
+}
+
+.rsvp-form h3 {
+  margin: 0 0 4px;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .rsvp-form label {
@@ -134,6 +92,10 @@ a {
   border-radius: 8px;
   background: var(--bg);
   color: var(--text);
+}
+
+.rsvp-form input[aria-invalid="true"] {
+  border-color: var(--error);
 }
 
 .rsvp-form input:focus-visible,
@@ -163,6 +125,10 @@ a {
   padding: 4px 0;
 }
 
+.rsvp-form input[type="radio"] {
+  accent-color: var(--accent);
+}
+
 .rsvp-form button {
   font: inherit;
   font-weight: 600;
@@ -170,13 +136,18 @@ a {
   border: none;
   border-radius: 8px;
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-contrast);
   cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.rsvp-form button:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 
 .rsvp-form button:disabled {
   opacity: 0.6;
-  cursor: progress;
+  cursor: not-allowed;
 }
 
 .field-error,
@@ -186,8 +157,16 @@ a {
   font-weight: 400;
 }
 
-.form-error {
+.form-error,
+.preview-note {
   margin: 0;
+  text-align: center;
+}
+
+.preview-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: italic;
 }
 
 .rsvp-success {
@@ -197,4 +176,67 @@ a {
 
 .rsvp-success h3 {
   color: var(--success);
+}
+
+/* ---------- Template preview bar (/templates) ---------- */
+.preview-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  padding: 10px 16px;
+  background: #1f1a17;
+  border-bottom: 1px solid #000;
+}
+
+.preview-group {
+  display: flex;
+  gap: 4px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.preview-bar button {
+  flex: none;
+  white-space: nowrap;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border: 1px solid #5a514b;
+  border-radius: 999px;
+  background: transparent;
+  color: #f1e9e2;
+  cursor: pointer;
+}
+
+.preview-age {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f1e9e2;
+  font-size: 0.9rem;
+}
+
+.preview-age select {
+  font: inherit;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #5a514b;
+  background: #2a2420;
+  color: #f1e9e2;
+}
+
+.preview-bar button[aria-pressed="true"] {
+  background: #f1e9e2;
+  color: #1f1a17;
+  border-color: #f1e9e2;
+}
+
+.preview-bar button:focus-visible {
+  outline: 2px solid #f1c27d;
+  outline-offset: 2px;
 }

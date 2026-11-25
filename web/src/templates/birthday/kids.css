@@ -1,0 +1,81 @@
+/* ================= Kids cartoon & fantasy ================= */
+.tpl-bday-kids {
+  --bg: #eef7ff;
+  --surface: #ffffff;
+  --text: #2e3a59;
+  --muted: #5d6b8a;
+  --accent: #ff4f8b;
+  --accent-contrast: #ffffff;
+  --gold: #ffb703;
+  --border: #d7e8fb;
+  --heading: #3a5bd9;
+  --eyebrow: #ff4f8b;
+  --radius: 24px;
+  --bday-name-font: var(--fun);
+  --bday-name-weight: 800;
+  --display: var(--fun);
+  --age-color: #ff4f8b;
+  --age-glow: 4px 4px 0 #ffd166;
+  --balloon-1: #ff7aa2;
+  --balloon-2: #7cc6ff;
+  --balloon-3: #ffd166;
+  --balloon-4: #8ce99a;
+  --gift: #7cc6ff;
+  --gift-lid: #4dabf7;
+  --gift-ribbon: #ff7aa2;
+  --bow: #ff7aa2;
+  --bow-dark: #e2557f;
+  --obj-ink: #3a5bd9;
+  --cover-bg: radial-gradient(circle at 20% 20%, #fff, transparent 30%), linear-gradient(180deg, #bfe3ff, #fde2ff);
+  --cover-accent: #3a5bd9;
+  --celebrate-bg: linear-gradient(135deg, #ff7aa2, #ffb703);
+  --reception-bg: #3a5bd9;
+
+  background:
+    radial-gradient(circle at 10% 8%, #fff 0, transparent 20%),
+    radial-gradient(circle at 90% 30%, #ffe9f3 0, transparent 30%),
+    linear-gradient(180deg, #d9efff, #fdf0ff 60%, #fff7e6);
+}
+
+.tpl-bday-kids .sec:nth-child(even) {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.kids-art {
+  position: relative;
+}
+
+.kids-balloons {
+  position: absolute;
+  right: -4%;
+  top: 6%;
+  width: 34%;
+  animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+.tpl-bday-kids .event-card {
+  border-width: 3px;
+  border-style: dashed;
+}
+
+.tpl-bday-kids .event-card:nth-child(3n + 1) {
+  border-color: #ffc2d6;
+}
+.tpl-bday-kids .event-card:nth-child(3n + 2) {
+  border-color: #b9dcff;
+}
+.tpl-bday-kids .event-card:nth-child(3n) {
+  border-color: #ffe08a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kids-balloons {
+    animation: none;
+  }
+}

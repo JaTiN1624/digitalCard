@@ -1,0 +1,204 @@
+/* ================= Maharashtrian Traditional =================
+   Paithani-inspired: deep red and saffron silk, peacock green and temple gold. */
+.tpl-maharashtrian {
+  --bg: #3b0d0b;
+  --surface: #561811;
+  --text: #fbe9c0;
+  --muted: #edcd94;
+  --accent: #f2c766;
+  --accent-contrast: #3b0d0b;
+  --gold: #e8bf5f;
+  --border: #9a5b2a;
+  --heading: #f6d27a;
+  --eyebrow: #e9b95c;
+  --error: #ffb4a9;
+  --success: #c4e8b8;
+  --radius: 6px;
+  --btn-radius: 4px;
+  --rangoli-1: #e2502b;
+  --rangoli-2: #f2b233;
+  --rangoli-3: #2f8f6a;
+  --rangoli-line: #f6d48a;
+
+  --cover-bg:
+    radial-gradient(circle at 50% 30%, rgba(242, 178, 51, 0.22), transparent 60%),
+    linear-gradient(180deg, #4a120e, #2c0907);
+  --cover-ink: #fbe9c0;
+  --cover-accent: #f6d27a;
+  --cover-muted: #edcd94;
+  --obj-paper: #fbe7bf;
+  --obj-ink: #6b1a10;
+  --obj-gold: #d9a948;
+  --obj-gold-deep: #a86d16;
+  --obj-accent: #6f1f10;
+  --obj-accent-3: #93331a;
+
+  --reception-bg:
+    radial-gradient(circle at top, rgba(47, 143, 106, 0.55), transparent 70%),
+    linear-gradient(150deg, #1f5c45, #123a2c);
+  --reception-ink: #fbe9c0;
+  --reception-title: #f6d27a;
+
+  /* Paithani border: repeating gold "kath" stripe on the page edges */
+  background:
+    linear-gradient(90deg, #1f5c45 0 6px, #e8bf5f 6px 8px, transparent 8px) left / 14px 100% repeat-y,
+    linear-gradient(-90deg, #1f5c45 0 6px, #e8bf5f 6px 8px, transparent 8px) right / 14px 100% repeat-y,
+    radial-gradient(circle at 50% 0%, rgba(242, 178, 51, 0.15), transparent 55%),
+    var(--bg);
+}
+
+.tpl-maharashtrian .sec:nth-child(even) {
+  background:
+    radial-gradient(circle, rgba(232, 191, 95, 0.12) 1.5px, transparent 2px) 0 0 / 22px 22px,
+    rgba(0, 0, 0, 0.18);
+}
+
+.maha-toran-wrap {
+  position: relative;
+  z-index: 3;
+  margin: 0 -4%;
+}
+
+.maha-toran {
+  width: 100%;
+  height: 80px;
+}
+
+.maha-stage {
+  position: relative;
+  padding-top: 10px;
+}
+
+.maha-rangoli {
+  width: 132px;
+}
+
+.maha-card {
+  z-index: 1;
+  border: 5px double var(--gold);
+  background:
+    radial-gradient(circle at center, rgba(154, 56, 29, 0.85), transparent 72%),
+    linear-gradient(140deg, #6e1d16, #9e3a18, #4c120f);
+  box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.6);
+}
+
+/* Paithani pallu band along the bottom of the card */
+.maha-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;
+  background:
+    linear-gradient(90deg, transparent 0 4px, var(--gold) 4px 6px, transparent 6px) 0 0 / 14px 100%,
+    linear-gradient(#1f5c45, #1f5c45);
+  opacity: 0.85;
+}
+
+.maha-blessing {
+  margin: 0 0 6px;
+  color: var(--gold);
+  font-family: "Tiro Devanagari Marathi", "Tiro Devanagari Hindi", var(--serif);
+  font-size: 1.3rem;
+}
+
+.maha-motifs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.maha-motifs span {
+  display: block;
+}
+
+.maha-motifs .feather {
+  width: 46px;
+  color: #3fae8a;
+}
+
+.maha-motifs .feather.mirror,
+.maha-ornament .mirror {
+  transform: scaleX(-1);
+}
+
+.maha-diyas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.maha-diyas .diya {
+  width: 54px;
+  color: #c9861a;
+}
+
+.maha-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--gold);
+}
+
+.maha-ornament .motif {
+  width: 30px;
+}
+
+.maha-ornament .motif:nth-child(2) {
+  width: 40px;
+}
+
+.sec-ornament .maha-ornament {
+  width: auto;
+}
+
+/* Diya flame flicker and glow */
+.diya-flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: diya-flicker 1.8s ease-in-out infinite;
+}
+
+.diya-glow {
+  animation: diya-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes diya-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(0deg);
+  }
+  25% {
+    transform: scale(0.94, 1.06) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.04, 0.96) rotate(1.5deg);
+  }
+  75% {
+    transform: scale(0.97, 1.04) rotate(-1deg);
+  }
+}
+
+@keyframes diya-glow {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.tpl-maharashtrian .rsvp-form input:not([type="radio"]),
+.tpl-maharashtrian .rsvp-form textarea {
+  background: #3b0d0b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diya-flame,
+  .diya-glow {
+    animation: none;
+  }
+}

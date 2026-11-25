@@ -1,0 +1,177 @@
+/* ================= Neon party ================= */
+.tpl-bday-neon {
+  --bg: #07020f;
+  --surface: #120a24;
+  --text: #f5e9ff;
+  --muted: #b9a7d9;
+  --accent: #ff2e9a;
+  --accent-contrast: #07020f;
+  --gold: #22d3ee;
+  --border: #3b2470;
+  --heading: #22d3ee;
+  --eyebrow: #a855f7;
+  --error: #ffb4a9;
+  --success: #b9e3b5;
+  --radius: 14px;
+  --bday-name-font: var(--fun);
+  --bday-name-weight: 800;
+  --display: var(--fun);
+  --age-color: #fff;
+  --age-glow: 0 0 8px #ff2e9a, 0 0 22px #ff2e9a, 0 0 46px #a855f7;
+  --bokeh: rgba(168, 85, 247, 0.28);
+  --sparkle: #22d3ee;
+  --obj-paper: #120a24;
+  --obj-ink: #f5e9ff;
+  --obj-accent: #a855f7;
+  --cover-bg: radial-gradient(circle at 50% 40%, #1e0b3d, #07020f 70%);
+  --cover-ink: #f5e9ff;
+  --cover-accent: #ff2e9a;
+  --cover-muted: #b9a7d9;
+  --celebrate-bg: linear-gradient(135deg, #ff2e9a, #a855f7, #22d3ee);
+  --reception-bg: #120a24;
+
+  background: radial-gradient(circle at 50% 0%, #1e0b3d, var(--bg) 60%);
+}
+
+/* Neon sign name with an occasional flicker */
+.tpl-bday-neon .bday-name {
+  color: #fff;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 14px #ff2e9a,
+    0 0 30px #ff2e9a,
+    0 0 60px #a855f7;
+  animation: neon-flicker 5s linear infinite;
+}
+
+.tpl-bday-neon .bday-line {
+  color: #22d3ee;
+  text-shadow: 0 0 10px #22d3ee;
+}
+
+@keyframes neon-flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  24%,
+  55% {
+    opacity: 0.45;
+  }
+}
+
+/* Equaliser */
+.neon-eq {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  height: 70px;
+}
+
+.neon-eq span {
+  width: 9px;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(0deg, #22d3ee, #a855f7 55%, #ff2e9a);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+  transform-origin: bottom;
+  animation: eq-beat 0.9s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.13s);
+}
+
+@keyframes eq-beat {
+  0%,
+  100% {
+    transform: scaleY(0.2);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Sweeping light beams behind everything */
+.neon-beams {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.neon-beams span {
+  position: absolute;
+  bottom: -10%;
+  left: calc(10% + var(--i) * 26%);
+  width: 90px;
+  height: 130vh;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--beam) 45%, transparent), transparent 75%);
+  transform-origin: bottom center;
+  filter: blur(6px);
+  animation: beam-sweep 6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -1.5s);
+  --beam: #ff2e9a;
+}
+
+.neon-beams span:nth-child(2n) {
+  --beam: #22d3ee;
+}
+
+.neon-beams span:nth-child(3) {
+  --beam: #a855f7;
+}
+
+@keyframes beam-sweep {
+  from {
+    transform: rotate(-24deg);
+  }
+  to {
+    transform: rotate(24deg);
+  }
+}
+
+/* Glowing cards */
+.tpl-bday-neon .event-card,
+.tpl-bday-neon .date-card,
+.tpl-bday-neon .venue-card,
+.tpl-bday-neon .sec-rsvp .rsvp,
+.tpl-bday-neon .contact-card {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 24px -6px rgba(168, 85, 247, 0.6);
+}
+
+/* Party pass cover */
+.tpl-bday-neon .ticket-main {
+  border: 1px solid #a855f7;
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.5);
+}
+
+.tpl-bday-neon .ticket-head {
+  color: #22d3ee;
+}
+
+.tpl-bday-neon .ticket-stub {
+  background: linear-gradient(160deg, #ff2e9a, #a855f7);
+}
+
+.tpl-bday-neon .rsvp-form input:not([type="radio"]),
+.tpl-bday-neon .rsvp-form textarea {
+  background: #07020f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-bday-neon .bday-name,
+  .neon-eq span,
+  .neon-beams span {
+    animation: none;
+  }
+  .neon-eq span {
+    transform: scaleY(0.6);
+  }
+}

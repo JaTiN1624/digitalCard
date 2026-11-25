@@ -1,0 +1,117 @@
+/* ================= First birthday ================= */
+.tpl-bday-first {
+  --bg: #f4f9ff;
+  --surface: #ffffff;
+  --text: #3d4a63;
+  --muted: #6c7a95;
+  --accent: #5b8def;
+  --accent-contrast: #ffffff;
+  --gold: #f6b8cf;
+  --border: #dfeafb;
+  --heading: #5b8def;
+  --eyebrow: #e787ad;
+  --radius: 28px;
+  --bday-name-font: var(--fun);
+  --bday-name-weight: 800;
+  --display: var(--fun);
+  --age-color: #f48fb8;
+  --age-glow: 0 6px 0 #ffe08a;
+  --balloon-1: #a7d8ff;
+  --balloon-2: #ffc8dd;
+  --balloon-3: #fff1a8;
+  --balloon-4: #bde0c6;
+  --gift: #ffc8dd;
+  --gift-lid: #f9a8c8;
+  --gift-ribbon: #a7d8ff;
+  --bow: #a7d8ff;
+  --bow-dark: #7cb9ec;
+  --teddy: #d9a77a;
+  --teddy-light: #f3d9bf;
+  --teddy-bow: #a7d8ff;
+  --obj-ink: #5b8def;
+  --cover-bg: linear-gradient(180deg, #dceeff, #ffe8f1);
+  --cover-accent: #5b8def;
+  --celebrate-bg: linear-gradient(135deg, #a7d8ff, #f6b8cf);
+  --reception-bg: #5b8def;
+
+  background:
+    radial-gradient(circle at 15% 10%, #fff, transparent 25%),
+    linear-gradient(180deg, #e3f1ff, #fff0f6 60%, #fffbe8);
+}
+
+.tpl-bday-first .sec:nth-child(even) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.first-art {
+  position: relative;
+  height: 190px;
+}
+
+.first-teddy {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 120px;
+  translate: -50% 0;
+  animation: teddy-wave 3s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+.first-balloons {
+  position: absolute;
+  left: 56%;
+  top: -10px;
+  width: 92px;
+  animation: bob-first 3s ease-in-out infinite;
+}
+
+.first-cloud {
+  position: absolute;
+  width: 70px;
+  opacity: 0.9;
+  animation: cloud-drift 9s ease-in-out infinite alternate;
+}
+
+.first-cloud.c1 {
+  left: 2%;
+  top: 30px;
+}
+
+.first-cloud.c2 {
+  right: 4%;
+  top: 90px;
+  width: 54px;
+  animation-delay: -4s;
+}
+
+@keyframes teddy-wave {
+  50% {
+    transform: rotate(-3deg) translateY(-4px);
+  }
+}
+
+@keyframes bob-first {
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+@keyframes cloud-drift {
+  to {
+    transform: translateX(26px);
+  }
+}
+
+/* The "1" gets a soft halo */
+.tpl-bday-first .age-number {
+  font-size: clamp(6rem, 34vw, 10rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-teddy,
+  .first-balloons,
+  .first-cloud {
+    animation: none;
+  }
+}
