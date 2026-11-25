@@ -6,3 +6,6 @@ dist/
 coverage/
 generated/
 .DS_Store
+
+# Customer details and photos (private)
+customers/
