@@ -349,6 +349,49 @@
   margin-top: var(--sp-6);
 }
 
+.m-sheet .m-call {
+  margin-top: var(--sp-3);
+  padding: 10px 0;
+  text-align: center;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Floating WhatsApp button ---------- */
+.wa-fab {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 38; /* below the header (40) and the open mobile menu (39) */
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 10px 24px -8px rgba(26, 127, 69, 0.65);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -8px rgba(26, 127, 69, 0.75);
+}
+
+.wa-fab:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab {
+    transition: none;
+  }
+}
+
 /* ---------- Footer ---------- */
 .s-footer {
   padding: var(--sp-8) 0 var(--sp-6);
@@ -384,6 +427,13 @@
 .s-footer a {
   color: #d9d0c5;
   text-decoration: none;
+}
+
+.s-footer a.s-footer-phone {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .s-footer a:hover {

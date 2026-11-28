@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BUSINESS } from "../../config/business.js";
+import { BUSINESS, callLink, phoneDisplay } from "../../config/business.js";
 import { enquiryLink } from "../../utils/site.js";
 
 // Header, mobile menu and footer of the public studio site (never shown on invitations)
@@ -41,15 +41,20 @@ export function SiteHeader() {
 
   const close = () => setOpen(false);
 
-  // lock page scroll while the menu is open
+  // While the menu is open: lock page scroll and let Escape close it
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
   return (
+    <>
     <header className="s-header">
       <a className="skip-link" href="#main">
         Skip to content
@@ -75,24 +80,51 @@ export function SiteHeader() {
           {open ? "Close" : "Menu"} <span className="menu-btn-lines" aria-hidden="true" />
         </button>
       </div>
-      {open && (
-        <nav id="m-sheet" className="m-sheet" aria-label="Menu">
-          {MENU.map(([to, label, note]) => (
-            <Link key={to} to={to} className="m-link" onClick={close} aria-current={pathname === to ? "page" : undefined}>
-              {label} {note && <span>{note}</span>}
-            </Link>
-          ))}
-          <a className="btn-s wa" href={enquiryLink()} target="_blank" rel="noopener noreferrer">
-            <WhatsAppIcon /> Chat with us on WhatsApp
-          </a>
-        </nav>
-      )}
     </header>
+    {/* Rendered outside <header> on purpose: the header's backdrop-filter makes it the
+        containing block for position:fixed children, which squashed this sheet to 64px. */}
+    {open && (
+      <nav id="m-sheet" className="m-sheet" aria-label="Menu">
+        {MENU.map(([to, label, note]) => (
+          <Link key={to} to={to} className="m-link" onClick={close} aria-current={pathname === to ? "page" : undefined}>
+            {label} {note && <span>{note}</span>}
+          </Link>
+        ))}
+        <a className="btn-s wa" href={enquiryLink()} target="_blank" rel="noopener noreferrer">
+          <WhatsAppIcon /> Chat with us on WhatsApp
+        </a>
+        {callLink() && (
+          <a className="m-call" href={callLink()}>
+            Or call {phoneDisplay()}
+          </a>
+        )}
+      </nav>
+    )}
+    </>
+  );
+}
+
+// Floating "chat on WhatsApp" button for the public site. Hidden when no number is configured,
+// so it never opens WhatsApp without a recipient.
+export function WhatsAppFab() {
+  if (!BUSINESS.whatsapp) return null;
+  return (
+    <a
+      className="wa-fab"
+      href={enquiryLink()}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Chat with us on WhatsApp, ${phoneDisplay()}`}
+      title="Chat with us on WhatsApp"
+    >
+      <WhatsAppIcon size={28} />
+    </a>
   );
 }
 
 export function SiteFooter() {
   return (
+    <>
     <footer className="s-footer">
       <div className="wrap">
         <div className="s-footer-grid">
@@ -126,6 +158,13 @@ export function SiteFooter() {
           <div>
             <h2>Contact</h2>
             <ul>
+              {callLink() && (
+                <li>
+                  <a href={callLink()} className="s-footer-phone">
+                    {phoneDisplay()}
+                  </a>
+                </li>
+              )}
               <li>
                 <a href={enquiryLink()} target="_blank" rel="noopener noreferrer">
                   WhatsApp
@@ -146,6 +185,10 @@ export function SiteFooter() {
         </p>
       </div>
     </footer>
+    {/* Every public page ends with SiteFooter, so the floating button appears site-wide.
+        The mobile design preview has its own Customize bar and doesn't render the footer. */}
+    <WhatsAppFab />
+    </>
   );
 }
 
