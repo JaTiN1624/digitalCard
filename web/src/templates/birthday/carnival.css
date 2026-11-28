@@ -1,0 +1,467 @@
+/* Carnival Celebration — big-top red and cream, marquee bulbs, block letters, tickets */
+.tpl-carn {
+  --bg: #fff6e8;
+  --surface: #ffffff;
+  --text: #3d1d4a;
+  --muted: #7a5a7f;
+  --accent: #e63946;
+  --accent-contrast: #ffffff;
+  --gold: #ffd23f;
+  --border: #f1d9b5;
+  --heading: #e63946;
+  --display: "Bungee", "Baloo 2", sans-serif;
+  --serif: "Baloo 2", system-ui, sans-serif;
+  --sans: "Baloo 2", system-ui, sans-serif;
+  --page-max: 100%;
+  --btn-radius: 10px;
+  --balloon-1: #e63946;
+  --balloon-2: #2a9df4;
+  --balloon-3: #ffd23f;
+  --cover-bg: radial-gradient(circle at 50% 40%, #3d1d4a, #1a0b22 75%);
+  --cover-ink: #fff6e8;
+
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  background: #fff6e8;
+}
+
+.tpl-carn .btn {
+  background: var(--accent);
+  box-shadow: 0 4px 0 #a4232e;
+  font-family: var(--sans);
+  font-weight: 800;
+}
+
+.tpl-carn .btn-ghost {
+  background: #fff;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+/* ---------- Marquee bulbs (cover and hero board) ---------- */
+.carn-bulbs {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+}
+
+.carn-bulbs i {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: #6b5320;
+  transition: background 0.2s, box-shadow 0.2s;
+  transition-delay: calc(var(--i) * 40ms);
+}
+
+.carn-board .carn-bulbs i,
+.carn-marquee.is-lit .carn-bulbs i {
+  background: #ffe9a8;
+  box-shadow: 0 0 10px #ffd23f, 0 0 20px rgba(255, 210, 63, 0.6);
+}
+
+.carn-board .carn-bulbs i {
+  animation: carn-chase 1.4s infinite;
+  animation-delay: calc(var(--i) * -0.08s);
+}
+
+@keyframes carn-chase {
+  50% { background: #b8923a; box-shadow: none; }
+}
+
+.carn-marquee {
+  position: relative;
+  width: min(320px, 86vw);
+  padding: 46px 26px;
+  border-radius: 22px;
+  background: linear-gradient(#5a2a66, #3d1d4a);
+  border: 4px solid #ffd23f;
+  text-align: center;
+}
+
+.carn-marquee-roll {
+  margin: 0;
+  color: #ffd23f;
+  font: 1rem var(--display);
+}
+
+.carn-marquee-name {
+  margin: 8px 0 0;
+  color: #6b5a74;
+  font: clamp(2.2rem, 12vw, 3.2rem) / 1.1 var(--display);
+  transition: color 0.4s 0.6s, text-shadow 0.4s 0.6s;
+}
+
+.carn-marquee.is-lit .carn-marquee-name {
+  color: #fff;
+  text-shadow: 0 0 14px #ffd23f;
+}
+
+.carn-marquee-star {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  margin-left: -16px;
+  display: block;
+  width: 32px;
+  color: #ffd23f;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+/* ---------- Big-top hero ---------- */
+.carn-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+  overflow: hidden;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 100%, #ffe1b8, #fff6e8 60%);
+}
+
+.carn-canopy {
+  width: calc(100% + 32px);
+  height: 90px;
+  margin: 0 -16px;
+  background:
+    radial-gradient(circle at 50% 0, transparent 0 0, transparent 0) ,
+    repeating-linear-gradient(90deg, #e63946 0 40px, #fff6e8 40px 80px);
+  -webkit-mask: radial-gradient(circle 20px at 20px 100%, transparent 98%, #000) 0 0 / 40px 100%;
+  mask: radial-gradient(circle 20px at 20px 100%, transparent 98%, #000) 0 0 / 40px 100%;
+  filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.08));
+}
+
+.carn-bunting {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 520px;
+  height: 34px;
+  border-top: 2px solid #3d1d4a;
+  border-radius: 0 0 50% 50% / 0 0 30px 30px;
+}
+
+.carn-bunting span {
+  width: 22px;
+  height: 28px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: var(--accent);
+}
+
+.carn-bunting span:nth-child(4n + 2) { background: #ffd23f; }
+.carn-bunting span:nth-child(4n + 3) { background: #2a9df4; }
+.carn-bunting span:nth-child(4n) { background: #2ec4b6; }
+
+.carn-board {
+  position: relative;
+  z-index: 2;
+  width: min(360px, 92vw);
+  margin-top: 26px;
+  padding: 40px 26px 34px;
+  border-radius: 24px;
+  background: linear-gradient(#e63946, #b8232f);
+  border: 5px solid #ffd23f;
+  color: #fff;
+  box-shadow: 0 16px 0 #7a1620, 0 26px 40px -10px rgba(61, 29, 74, 0.5);
+}
+
+.carn-presents {
+  margin: 0;
+  color: #ffe9a8;
+  font-weight: 800;
+}
+
+.carn-name {
+  margin: 6px 0;
+  /* Set explicitly: the site-wide h1 colour would otherwise make the name red on the red board */
+  color: #fff;
+  font: clamp(2.6rem, 14vw, 4rem) / 1.05 var(--display);
+  text-shadow: 0 4px 0 #7a1620;
+}
+
+.tpl-carn:lang(hi) .carn-name,
+.tpl-carn:lang(mr) .carn-name,
+.tpl-carn:lang(hi) .carn-title,
+.tpl-carn:lang(mr) .carn-title,
+.tpl-carn:lang(hi) .carn-marquee-name,
+.tpl-carn:lang(mr) .carn-marquee-name {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+}
+
+.carn-line {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.carn-tent {
+  width: min(320px, 84vw);
+  margin-top: auto;
+}
+
+/* ---------- Sections ---------- */
+.carn-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 54px 20px;
+  text-align: center;
+}
+
+.carn-title {
+  margin: 0 0 24px;
+  color: var(--heading);
+  font: clamp(1.7rem, 7.5vw, 2.3rem) / 1.15 var(--display);
+}
+
+.carn-host {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.carn-photo {
+  width: 240px;
+  margin: 0 auto 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  box-shadow: 0 0 0 4px var(--accent);
+}
+
+/* Ringmaster's starburst badge */
+.carn-badge {
+  display: grid;
+  place-items: center;
+  width: min(320px, 86vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  padding: 50px;
+  background: #ffd23f;
+  clip-path: polygon(50% 0, 61% 12%, 75% 6%, 79% 21%, 94% 22%, 89% 37%, 100% 50%, 89% 63%, 94% 78%, 79% 79%, 75% 94%, 61% 88%, 50% 100%, 39% 88%, 25% 94%, 21% 79%, 6% 78%, 11% 63%, 0 50%, 11% 37%, 6% 22%, 21% 21%, 25% 6%, 39% 12%);
+  animation: carn-badge 14s linear infinite;
+}
+
+.carn-badge p {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  animation: carn-badge 14s linear infinite reverse;
+}
+
+@keyframes carn-badge {
+  to { transform: rotate(360deg); }
+}
+
+/* Tear-off tickets */
+.carn-tickets {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carn-ticket {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  min-height: 86px;
+  background: #fff;
+  text-align: left;
+  -webkit-mask:
+    radial-gradient(circle 9px at 60px 0, transparent 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle 9px at 60px 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle 9px at 60px 0, transparent 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle 9px at 60px 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+  filter: drop-shadow(0 6px 10px rgba(61, 29, 74, 0.15));
+}
+
+.carn-ticket-stub {
+  display: grid;
+  place-items: center;
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-left: 2px dashed #fff;
+}
+
+.carn-ticket:nth-child(even) .carn-ticket-stub {
+  background: #2a9df4;
+}
+
+.carn-ticket-body {
+  display: grid;
+  align-content: center;
+  padding: 12px 18px;
+}
+
+.carn-ticket-time {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.carn-ticket-name {
+  font: 1.25rem/1.2 var(--display);
+}
+
+.tpl-carn:lang(hi) .carn-ticket-name,
+.tpl-carn:lang(mr) .carn-ticket-name {
+  font: 800 1.3rem "Baloo 2", sans-serif;
+}
+
+/* Big date ticket */
+.carn-bigticket {
+  position: relative;
+  display: inline-grid;
+  padding: 26px 50px 50px;
+  background: #ffd23f;
+  border-radius: 10px;
+  -webkit-mask:
+    radial-gradient(circle 14px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 14px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle 14px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 14px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+}
+
+.carn-bt-day {
+  font-weight: 800;
+}
+
+.carn-bt-date {
+  font: clamp(2rem, 10vw, 2.8rem) / 1.1 var(--display);
+  color: var(--accent);
+}
+
+.carn-bt-time {
+  font-weight: 700;
+}
+
+.carn-barcode {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 140px;
+  height: 22px;
+  margin-left: -70px;
+  background: repeating-linear-gradient(90deg, #3d1d4a 0 2px, transparent 2px 4px, #3d1d4a 4px 7px, transparent 7px 9px);
+}
+
+.tpl-carn .countdown {
+  margin-top: 24px;
+}
+
+.tpl-carn .countdown-unit {
+  background: #fff;
+  border: 3px solid var(--accent);
+  border-radius: 14px;
+}
+
+.tpl-carn .countdown-value {
+  color: var(--accent);
+  font-family: var(--display);
+}
+
+/* Ticket booth */
+.carn-booth {
+  position: relative;
+  padding: 50px 20px 22px;
+  background: #fff;
+  border: 4px solid var(--accent);
+  border-radius: 14px;
+}
+
+.carn-awning {
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: -4px;
+  height: 36px;
+  border-radius: 10px 10px 0 0;
+  background: repeating-linear-gradient(90deg, #e63946 0 26px, #fff6e8 26px 52px);
+  -webkit-mask: radial-gradient(circle 13px at 13px 100%, transparent 98%, #000) 0 0 / 26px 100%;
+  mask: radial-gradient(circle 13px at 13px 100%, transparent 98%, #000) 0 0 / 26px 100%;
+}
+
+.carn-venue {
+  margin: 0;
+  color: var(--text);
+  font: 1.35rem/1.2 var(--display);
+}
+
+.tpl-carn:lang(hi) .carn-venue,
+.tpl-carn:lang(mr) .carn-venue {
+  font: 800 1.4rem "Baloo 2", sans-serif;
+}
+
+.carn-address {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.carn-map {
+  --map-radius: 10px;
+  border: 3px dashed #ffd23f;
+}
+
+.carn-rsvp {
+  padding: 24px 20px;
+  background: #fff;
+  border: 4px dashed var(--accent);
+  border-radius: 16px;
+  text-align: left;
+}
+
+.tpl-carn .rsvp-form h3 {
+  color: var(--accent);
+  font-family: var(--display);
+  font-weight: 400;
+}
+
+.tpl-carn .rsvp-form button {
+  border-radius: 10px;
+  background: var(--accent);
+  box-shadow: 0 4px 0 #a4232e;
+}
+
+.carn-tada {
+  padding: 18px 40px;
+  border: 4px solid #3d1d4a;
+  border-radius: 14px;
+  background: #ffd23f;
+  color: #3d1d4a;
+  font: 1.6rem var(--display);
+  box-shadow: 0 6px 0 #3d1d4a;
+  cursor: pointer;
+}
+
+.tpl-carn .celebrate-message {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.carn-foot {
+  padding: 30px 20px 80px;
+  text-align: center;
+}
+
+.carn-foot .carn-bunting {
+  margin: 0 auto 26px;
+}
+
+.carn-thanks {
+  max-width: 24em;
+  margin: 0 auto 18px;
+  font-weight: 600;
+}

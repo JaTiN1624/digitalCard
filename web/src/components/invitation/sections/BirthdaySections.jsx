@@ -5,11 +5,12 @@ import { useCelebrate } from "../motion/celebrationContext.js";
 import { useReveal } from "../motion/useReveal.js";
 import SectionHeading from "./SectionHeading.jsx";
 import { Cake } from "../art/BirthdayArt.jsx";
-import { birthdayAge, birthdayStage } from "../../../utils/invitation.js";
+import { birthdayAge, birthdayStage, hostPhone } from "../../../utils/invitation.js";
 
 // Cake reveal: the cake rises in, candles light one by one (one per year, up to nine), and the
 // guest can blow them out for a burst of confetti. Flames are a CSS flicker, not a simulation.
-export function CakeSection({ invitation, t, ornament }) {
+// `art` lets a template draw its own cake; it receives { candles, lit }.
+export function InteractiveCake({ invitation, t, art: Art = Cake, className = "" }) {
   const ref = useRef(null);
   const shown = useReveal(ref, 0.35);
   const [blown, setBlown] = useState(false);
@@ -23,8 +24,7 @@ export function CakeSection({ invitation, t, ornament }) {
   };
 
   return (
-    <section className="sec sec-cake">
-      <SectionHeading eyebrow={t("bday.cake.eyebrow")} ornament={ornament} />
+    <div className={`cake-wrap ${className}`.trim()}>
       <motion.div
         ref={ref}
         className={`cake-stage ${shown ? "is-shown" : ""}`}
@@ -32,7 +32,7 @@ export function CakeSection({ invitation, t, ornament }) {
         animate={shown ? { opacity: 1, scale: 1, y: 0 } : {}}
         transition={{ duration: 0.9, ease: "backOut" }}
       >
-        <Cake candles={age ?? 3} lit={!blown} />
+        <Art candles={age ?? 3} lit={!blown} />
       </motion.div>
       <div className="sec-actions" aria-live="polite">
         <AnimatePresence mode="wait" initial={false}>
@@ -47,12 +47,21 @@ export function CakeSection({ invitation, t, ornament }) {
           )}
         </AnimatePresence>
       </div>
+    </div>
+  );
+}
+
+export function CakeSection({ invitation, t, ornament }) {
+  return (
+    <section className="sec sec-cake">
+      <SectionHeading eyebrow={t("bday.cake.eyebrow")} ornament={ornament} />
+      <InteractiveCake invitation={invitation} t={t} />
     </section>
   );
 }
 
 // "Let's celebrate!": a popper on demand, rate-limited so repeated taps can't pile up effects
-export function CelebrateSection({ t }) {
+export function CelebrateButton({ t, label, className = "celebrate-btn" }) {
   const ref = useRef(null);
   const [cheers, setCheers] = useState(0);
   const [cooling, setCooling] = useState(false);
@@ -67,17 +76,17 @@ export function CelebrateSection({ t }) {
   };
 
   return (
-    <section className="sec sec-celebrate">
+    <>
       <motion.button
         ref={ref}
         type="button"
-        className="celebrate-btn"
+        className={className}
         onClick={pop}
         aria-disabled={cooling}
         whileTap={{ scale: 0.92 }}
         animate={cooling ? { rotate: [0, -4, 4, 0] } : {}}
       >
-        {t("bday.celebrate.button")}
+        {label ?? t("bday.celebrate.button")}
       </motion.button>
       <p className="celebrate-message" aria-live="polite">
         <AnimatePresence mode="popLayout">
@@ -94,6 +103,14 @@ export function CelebrateSection({ t }) {
           )}
         </AnimatePresence>
       </p>
+    </>
+  );
+}
+
+export function CelebrateSection({ t }) {
+  return (
+    <section className="sec sec-celebrate">
+      <CelebrateButton t={t} />
     </section>
   );
 }
@@ -111,13 +128,27 @@ export function DressCodeSection({ invitation, t, ornament }) {
   );
 }
 
+// Call and WhatsApp buttons for the host
+export function ContactButtons({ invitation, t, className = "sec-actions" }) {
+  const phone = hostPhone(invitation);
+  if (!phone) return null;
+  return (
+    <div className={className}>
+      <a className="btn" href={`tel:${phone}`}>
+        {t("bday.contact.call")}
+      </a>
+      <a className="btn btn-whatsapp" href={`https://wa.me/${phone.replace(/^\+/, "")}`} target="_blank" rel="noopener noreferrer">
+        {t("bday.contact.whatsapp")}
+      </a>
+    </div>
+  );
+}
+
 // Call / WhatsApp the parents (children's parties) or the host (adults)
 export function HostContactSection({ invitation, t }) {
-  const { host, rsvpPhone } = invitation.config;
-  const phone = typeof rsvpPhone === "string" ? rsvpPhone.replace(/[^\d+]/g, "") : "";
-  if (!/^\+?\d{10,15}$/.test(phone)) return null;
+  const { host } = invitation.config;
+  if (!hostPhone(invitation)) return null;
   const forKids = ["FIRST", "KIDS"].includes(birthdayStage(birthdayAge(invitation)));
-  const digits = phone.replace(/^\+/, "");
 
   return (
     <section className="sec sec-contact">
@@ -125,14 +156,7 @@ export function HostContactSection({ invitation, t }) {
         <p className="sec-eyebrow">{t("bday.contact.eyebrow")}</p>
         <h3 className="contact-title">{t(forKids ? "bday.contact.parents" : "bday.contact.host")}</h3>
         {host && <p className="contact-host">{host}</p>}
-        <div className="sec-actions">
-          <a className="btn" href={`tel:${phone}`}>
-            {t("bday.contact.call")}
-          </a>
-          <a className="btn btn-whatsapp" href={`https://wa.me/${digits}`} target="_blank" rel="noopener noreferrer">
-            {t("bday.contact.whatsapp")}
-          </a>
-        </div>
+        <ContactButtons invitation={invitation} t={t} />
       </ScrollReveal>
     </section>
   );

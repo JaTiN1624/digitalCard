@@ -1,0 +1,425 @@
+/* Birthday Memories — warm scrapbook: cream paper, kraft, washi tape, handwriting */
+.tpl-mem {
+  --bg: #f7f0e3;
+  --surface: #fffdf7;
+  --text: #4a3b30;
+  --muted: #8a7563;
+  --accent: #c2734a;
+  --accent-contrast: #ffffff;
+  --gold: #c9a16a;
+  --border: #e6d7bd;
+  --heading: #a65a36;
+  --hand: "Caveat", "Baloo 2", cursive;
+  --display: var(--hand);
+  --serif: "Lora", "Tiro Devanagari Hindi", Georgia, serif;
+  --sans: var(--serif);
+  --page-max: 100%;
+  --btn-radius: 8px;
+  --cover-bg: radial-gradient(circle at 50% 40%, #fbf5ea, #e9dcc3 80%);
+  --cover-ink: #4a3b30;
+
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.6), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.012) 0 2px, transparent 2px 4px),
+    #f7f0e3;
+}
+
+.tpl-mem .btn {
+  background: var(--accent);
+  font-family: var(--serif);
+}
+
+.tpl-mem .btn-ghost {
+  background: transparent;
+  color: var(--heading);
+  border: 1px solid var(--accent);
+}
+
+/* ---------- Album cover ---------- */
+.mem-album {
+  position: relative;
+  width: min(260px, 74vw);
+  aspect-ratio: 3 / 4;
+  perspective: 1200px;
+}
+
+.mem-album-page {
+  position: absolute;
+  inset: 0;
+  background: #fffaf0;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 20px 40px -20px rgba(74, 59, 48, 0.6);
+}
+
+.mem-album-polaroid {
+  position: absolute;
+  top: 18%;
+  left: 18%;
+  width: 46%;
+  aspect-ratio: 0.85;
+  background: linear-gradient(#d9c6a8, #c9b08c) 8px 8px / calc(100% - 16px) 72% no-repeat, #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  rotate: -6deg;
+}
+
+.mem-album-polaroid.p2 {
+  top: 44%;
+  left: 40%;
+  rotate: 8deg;
+  background: linear-gradient(#bcd2c8, #9dbcb0) 8px 8px / calc(100% - 16px) 72% no-repeat, #fff;
+}
+
+.mem-album-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 50%),
+    linear-gradient(135deg, #7a4a2e, #5a321d);
+  border-radius: 4px 12px 12px 4px;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  box-shadow: inset 6px 0 0 #4a2817, 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+  color: #f3dcb6;
+}
+
+.mem-album-stitch {
+  position: absolute;
+  inset: 12px;
+  border: 2px dashed rgba(243, 220, 182, 0.45);
+  border-radius: 6px;
+}
+
+.mem-album-label {
+  font: italic 0.95rem var(--serif);
+  opacity: 0.85;
+}
+
+.mem-album-name {
+  font: 700 2.6rem/1 var(--hand);
+}
+
+/* ---------- Polaroids ---------- */
+.mem-polaroid {
+  position: relative;
+  margin: 0;
+  padding: 10px 10px 34px;
+  background: #fff;
+  box-shadow: 0 10px 20px -8px rgba(74, 59, 48, 0.45);
+  transform: rotate(var(--tilt, 0deg));
+}
+
+.mem-polaroid img,
+.mem-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.mem-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f3d9c4, #d9e6df);
+  color: rgba(74, 59, 48, 0.5);
+  font: 700 3rem var(--hand);
+}
+
+.mem-polaroid figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  text-align: center;
+  font: 600 1.25rem var(--hand);
+  color: var(--text);
+}
+
+.mem-tape {
+  position: absolute;
+  z-index: 1;
+  top: -12px;
+  left: 50%;
+  width: 80px;
+  height: 24px;
+  margin-left: -40px;
+  background: rgba(232, 168, 124, 0.55);
+  rotate: -4deg;
+  clip-path: polygon(3% 0, 100% 6%, 97% 100%, 0 94%);
+}
+
+/* ---------- Scrapbook hero ---------- */
+.mem-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 18px;
+  text-align: center;
+}
+
+.mem-pile {
+  position: relative;
+  width: min(330px, 88vw);
+  height: 280px;
+}
+
+.mem-pile-item {
+  position: absolute;
+  width: 54%;
+}
+
+.mem-pile-item.i0 { left: 0; top: 20px; }
+.mem-pile-item.i1 { right: 0; top: 0; }
+.mem-pile-item.i2 { left: 23%; top: 80px; z-index: 2; }
+
+.mem-sticker {
+  position: absolute;
+  z-index: 3;
+  width: 30px;
+  color: #e8a87c;
+}
+
+.mem-sticker.s1 { top: -6px; left: 40%; }
+.mem-sticker.s2 { bottom: 0; right: 4%; width: 22px; color: #85b8a8; }
+
+.mem-kicker {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.mem-name {
+  margin: 0;
+  color: var(--heading);
+  font: 700 clamp(3.2rem, 17vw, 5rem) / 1 var(--hand);
+}
+
+.mem-underline {
+  width: 220px;
+  color: var(--accent);
+}
+
+.mem-line {
+  margin: 6px 0 0;
+  font-size: 1.2rem;
+}
+
+/* ---------- Sections ---------- */
+.mem-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.mem-title {
+  margin: 0 0 24px;
+  color: var(--heading);
+  font: 700 clamp(2.2rem, 10vw, 2.8rem) / 1.1 var(--hand);
+}
+
+.mem-note {
+  position: relative;
+  padding: 34px 26px 24px 40px;
+  background:
+    linear-gradient(90deg, transparent 26px, rgba(194, 115, 74, 0.35) 26px 28px, transparent 28px),
+    repeating-linear-gradient(transparent 0 31px, rgba(120, 150, 190, 0.3) 31px 32px),
+    #fffdf7;
+  text-align: left;
+  rotate: 1deg;
+  box-shadow: 0 12px 24px -14px rgba(74, 59, 48, 0.5);
+}
+
+.mem-note-text {
+  margin: 0;
+  font: 500 1.6rem/32px var(--hand);
+}
+
+.mem-note-sign {
+  margin: 10px 0 0;
+  text-align: right;
+  font: 700 1.5rem var(--hand);
+  color: var(--heading);
+}
+
+/* Timeline of memories */
+.mem-timeline {
+  display: grid;
+  gap: 34px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mem-memory {
+  display: grid;
+  grid-template-columns: 46% 1fr;
+  gap: 18px;
+  align-items: center;
+  text-align: left;
+}
+
+.mem-memory:nth-child(even) {
+  grid-template-columns: 1fr 46%;
+}
+
+.mem-memory:nth-child(even) .mem-polaroid {
+  order: 2;
+}
+
+.mem-memory-text h3 {
+  margin: 0 0 4px;
+  color: var(--heading);
+  font: 700 1.7rem/1.1 var(--hand);
+}
+
+.mem-memory-text p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.mem-moments {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 16px;
+}
+
+/* The party: date card, countdown and a handwritten checklist */
+.mem-datecard {
+  display: inline-grid;
+  padding: 18px 32px;
+  background: #fffdf7;
+  border: 2px solid var(--text);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.mem-date-day {
+  color: var(--muted);
+}
+
+.mem-date-big {
+  color: var(--heading);
+  font: 700 2.6rem/1.1 var(--hand);
+}
+
+.tpl-mem .countdown {
+  margin-top: 22px;
+}
+
+.tpl-mem .countdown-unit {
+  border: 2px solid var(--text);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.tpl-mem .countdown-value {
+  color: var(--heading);
+  font: 700 2rem var(--hand);
+}
+
+.mem-checklist {
+  display: grid;
+  gap: 10px;
+  max-width: 400px;
+  margin: 28px auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.mem-checklist li {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  font: 600 1.5rem var(--hand);
+}
+
+.mem-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--text);
+  border-radius: 3px 6px 4px 5px;
+}
+
+.mem-check-time {
+  color: var(--muted);
+  font: 0.95rem var(--serif);
+}
+
+.mem-mapcard {
+  position: relative;
+  padding: 12px 12px 18px;
+  background: #fff;
+  box-shadow: 0 10px 20px -8px rgba(74, 59, 48, 0.45);
+  rotate: -1deg;
+}
+
+.mem-map {
+  --map-radius: 0;
+  margin-top: 0;
+  filter: sepia(0.25);
+}
+
+.mem-venue {
+  margin: 10px 0 0;
+  color: var(--heading);
+  font: 700 1.7rem var(--hand);
+}
+
+.mem-address {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.mem-rsvp {
+  padding: 26px 22px;
+  background: #fffdf7;
+  border: 1px solid var(--border);
+  text-align: left;
+  box-shadow: 0 12px 24px -16px rgba(74, 59, 48, 0.5);
+}
+
+.tpl-mem .rsvp-form h3 {
+  color: var(--heading);
+  font: 700 2rem var(--hand);
+}
+
+.tpl-mem .rsvp-form button {
+  background: var(--accent);
+}
+
+.mem-foot {
+  padding: 50px 20px 80px;
+  text-align: center;
+}
+
+.mem-thanks {
+  max-width: 24em;
+  margin: 0 auto;
+}
+
+.mem-love {
+  margin: 8px 0 20px;
+  color: var(--heading);
+  font: 700 2rem var(--hand);
+}
+
+:lang(hi) :is(.mem-name, .mem-title, .mem-note-text, .mem-checklist li, .mem-venue, .mem-love, .mem-date-big, .mem-album-name),
+:lang(mr) :is(.mem-name, .mem-title, .mem-note-text, .mem-checklist li, .mem-venue, .mem-love, .mem-date-big, .mem-album-name) {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 600;
+}
+
+:lang(hi) .mem-note-text,
+:lang(mr) .mem-note-text {
+  font-size: 1.15rem;
+}

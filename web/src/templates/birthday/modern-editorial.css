@@ -1,0 +1,364 @@
+/* Modern Editorial — ivory paper, black ink, Bodoni display, grid and rules */
+.tpl-ed {
+  --bg: #f4efe6;
+  --surface: #fbf8f2;
+  --text: #141414;
+  --muted: #6c665c;
+  --accent: #141414;
+  --accent-contrast: #f4efe6;
+  --gold: #a8916b;
+  --border: #141414;
+  --heading: #141414;
+  --display: "Bodoni Moda", "Tiro Devanagari Hindi", Didot, Georgia, serif;
+  --serif: var(--display);
+  --sans: "Helvetica Neue", Arial, "Nirmala UI", sans-serif;
+  --page-max: 100%;
+  --btn-radius: 0;
+  --cover-bg: #f4efe6;
+  --cover-ink: #141414;
+
+  font-family: var(--sans);
+  background: #f4efe6;
+}
+
+.tpl-ed:lang(mr) {
+  --display: "Bodoni Moda", "Tiro Devanagari Marathi", Didot, Georgia, serif;
+}
+
+.tpl-ed .btn {
+  background: #141414;
+  color: #f4efe6;
+  font-family: var(--sans);
+  letter-spacing: 0.16em;
+}
+
+.tpl-ed .btn-ghost,
+.tpl-ed .btn-whatsapp {
+  background: transparent;
+  color: #141414;
+  border: 1px solid #141414;
+}
+
+/* ---------- Type cover ---------- */
+.ed-type {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(360px, 88vw);
+  text-align: left;
+}
+
+.ed-type-word {
+  display: block;
+  font: 700 clamp(3.6rem, 19vw, 5.6rem) / 0.95 var(--display);
+  letter-spacing: -0.02em;
+}
+
+.ed-type-word:nth-child(even) {
+  align-self: flex-end;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.cover-type .cover-object {
+  overflow: hidden;
+}
+
+.cover-type .cover-eyebrow {
+  color: #141414;
+}
+
+/* ---------- Magazine cover ---------- */
+.ed-cover {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 30px;
+  border-bottom: 1px solid #141414;
+}
+
+.ed-masthead {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 3px double #141414;
+  font: 600 0.7rem var(--sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+:lang(hi) .ed-masthead,
+:lang(mr) .ed-masthead,
+:lang(hi) .ed-section-label,
+:lang(mr) .ed-section-label {
+  font-size: 0.95rem;
+  text-transform: none;
+}
+
+.ed-name {
+  margin: 14px 0 0;
+  font: 700 clamp(4.4rem, 26vw, 11rem) / 0.86 var(--display);
+  letter-spacing: -0.04em;
+  color: #141414;
+  word-break: break-word;
+}
+
+.tpl-ed:lang(hi) .ed-name,
+.tpl-ed:lang(mr) .ed-name {
+  font-size: clamp(3.4rem, 20vw, 8rem);
+  line-height: 1.1;
+}
+
+.ed-cover-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: end;
+  margin-top: 20px;
+}
+
+.ed-coverlines p {
+  margin: 0 0 14px;
+}
+
+.ed-kicker {
+  font: italic 1.3rem/1.2 var(--display);
+}
+
+.ed-tagline {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.ed-cl {
+  padding-top: 10px;
+  border-top: 1px solid #141414;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ed-cl b {
+  font: 700 1.8rem var(--display);
+  letter-spacing: 0;
+}
+
+.ed-cover-photo {
+  aspect-ratio: 3 / 4;
+  filter: grayscale(0.2) contrast(1.05);
+}
+
+.ed-big-age {
+  justify-self: end;
+  font: 400 clamp(9rem, 44vw, 18rem) / 0.8 var(--display);
+  font-style: italic;
+  color: #141414;
+}
+
+/* ---------- Spreads ---------- */
+.ed-sec {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 18px;
+  border-bottom: 1px solid #141414;
+}
+
+.ed-section-label {
+  margin: 0 0 26px;
+  font: 600 0.72rem var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.ed-section-label::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  margin-right: 12px;
+  background: #141414;
+  vertical-align: middle;
+}
+
+.ed-details {
+  display: grid;
+  gap: 0;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.ed-detail {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  column-gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid #141414;
+}
+
+.ed-num {
+  grid-row: span 3;
+  font: 400 2.6rem/1 var(--display);
+  font-style: italic;
+}
+
+.ed-detail-label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ed-detail-value {
+  font: 400 1.5rem/1.25 var(--display);
+}
+
+.ed-detail-sub {
+  color: var(--muted);
+}
+
+.ed-letter {
+  text-align: left;
+}
+
+.ed-pull {
+  margin: 0;
+  font: italic 400 clamp(1.7rem, 7vw, 2.6rem) / 1.25 var(--display);
+}
+
+:lang(hi) .ed-pull,
+:lang(mr) .ed-pull {
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.ed-byline {
+  margin: 20px 0 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ed-agenda {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ed-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 16px 6px;
+  border-top: 1px solid #141414;
+  transition: background 0.3s, color 0.3s;
+}
+
+.ed-row:hover {
+  background: #141414;
+  color: #f4efe6;
+}
+
+.ed-row-time {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ed-row-name {
+  font: 400 1.5rem var(--display);
+}
+
+.tpl-ed .countdown-units {
+  max-width: none;
+  gap: 0;
+}
+
+.tpl-ed .countdown-unit {
+  background: none;
+  border: 0;
+  border-left: 1px solid #141414;
+  border-radius: 0;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+
+.tpl-ed .countdown-value {
+  color: #141414;
+  font: 400 clamp(2.4rem, 12vw, 4rem) / 1 var(--display);
+}
+
+.ed-map {
+  --map-radius: 0;
+  filter: grayscale(1) contrast(1.1);
+}
+
+.ed-rsvp {
+  max-width: 520px;
+}
+
+.tpl-ed .rsvp-form h3 {
+  color: #141414;
+  font: italic 400 1.8rem var(--display);
+  text-align: left;
+}
+
+.tpl-ed .rsvp-form input:not([type="radio"]),
+.tpl-ed .rsvp-form textarea {
+  border: 0;
+  border-bottom: 1px solid #141414;
+  border-radius: 0;
+  background: transparent;
+}
+
+.tpl-ed .rsvp-form fieldset {
+  border-color: #141414;
+  border-radius: 0;
+}
+
+.tpl-ed .rsvp-form button {
+  border-radius: 0;
+  background: #141414;
+  color: #f4efe6;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ed-colophon {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 50px 18px 80px;
+  text-align: left;
+}
+
+.ed-colophon-name {
+  margin: 0;
+  font: italic 400 2.6rem var(--display);
+}
+
+.ed-thanks {
+  max-width: 30em;
+  color: var(--muted);
+}
+
+.ed-colophon .sec-actions {
+  justify-content: flex-start;
+}
+
+@media (min-width: 720px) {
+  .ed-details {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .ed-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .ed-num {
+    grid-row: auto;
+    margin-bottom: 10px;
+  }
+}

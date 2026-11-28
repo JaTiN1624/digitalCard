@@ -3,18 +3,6 @@
    --obj-paper, --obj-ink, --obj-gold, --obj-accent, --obj-accent-2, --cover-bg ...
    ===================================================================== */
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .motif {
   display: block;
   width: 100%;

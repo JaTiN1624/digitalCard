@@ -11,6 +11,8 @@ export const OCCASIONS = [
   "RECEPTION",
   "CELEBRATION", // several pre-wedding functions on one invitation
   "BIRTHDAY",
+  "ANNIVERSARY",
+  "BABY_SHOWER",
 ];
 
 // Sections a customer can switch off with config.hiddenSections
@@ -113,3 +115,10 @@ export function functionKind(name = "") {
 
 // Latin names animate letter by letter; Devanagari animates word by word so conjuncts stay joined
 export const isLatin = (text = "") => /^[\p{Script=Latin}\p{N}\s'’.,&-]*$/u.test(text);
+
+// The host's phone number, cleaned, or null when missing or invalid
+export function hostPhone(invitation) {
+  const { rsvpPhone } = invitation.config;
+  const phone = typeof rsvpPhone === "string" ? rsvpPhone.replace(/[^\d+]/g, "") : "";
+  return /^\+?\d{10,15}$/.test(phone) ? phone : null;
+}

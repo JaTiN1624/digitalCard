@@ -4,10 +4,14 @@ import { useInvitation } from "../hooks/useInvitation.js";
 import { getT } from "../i18n/index.js";
 import { getTemplate } from "../templates/index.js";
 import NotFoundPage from "./NotFoundPage.jsx";
+import MusicButton from "../components/invitation/MusicButton.jsx";
+import { usePageMeta } from "../hooks/usePageMeta.js";
 
 export default function InvitationPage() {
   const { slug } = useParams();
   const { loading, invitation, error } = useInvitation(slug);
+  // Personal invitations are private: keep them out of search results
+  usePageMeta({ title: invitation?.title ?? "Invitation", robots: "noindex, nofollow" });
 
   if (loading) {
     return (
@@ -35,6 +39,7 @@ export default function InvitationPage() {
       <Suspense fallback={<p className="page center muted">Loading invitation…</p>}>
         <Template invitation={invitation} t={getT(invitation.language)} />
       </Suspense>
+      <MusicButton src={invitation.config?.music} />
     </main>
   );
 }

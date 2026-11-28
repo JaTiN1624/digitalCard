@@ -1,5 +1,25 @@
 /* Base styles + RSVP form. Template themes live in src/templates/templates.css
    and override these variables inside .tpl-* */
+/* Metric-matched fallbacks for the site fonts: the page lays out the same before and after the
+   web fonts arrive, so text doesn't jump (layout shift). Ratios measured against the real fonts. */
+@font-face {
+  font-family: "Cormorant Fallback";
+  src: local("Times New Roman"), local("Noto Serif");
+  size-adjust: 96.85%;
+  ascent-override: 95%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Arial"), local("Roboto");
+  size-adjust: 103.9%;
+  ascent-override: 103%;
+  descent-override: 29%;
+  line-gap-override: 0%;
+}
+
 :root {
   --bg: #fdf8f3;
   --surface: #ffffff;
@@ -57,6 +77,19 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+/* Visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .muted {
@@ -176,67 +209,4 @@ a {
 
 .rsvp-success h3 {
   color: var(--success);
-}
-
-/* ---------- Template preview bar (/templates) ---------- */
-.preview-bar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px 24px;
-  padding: 10px 16px;
-  background: #1f1a17;
-  border-bottom: 1px solid #000;
-}
-
-.preview-group {
-  display: flex;
-  gap: 4px;
-  max-width: 100%;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.preview-bar button {
-  flex: none;
-  white-space: nowrap;
-  font: inherit;
-  font-size: 0.9rem;
-  padding: 6px 14px;
-  border: 1px solid #5a514b;
-  border-radius: 999px;
-  background: transparent;
-  color: #f1e9e2;
-  cursor: pointer;
-}
-
-.preview-age {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #f1e9e2;
-  font-size: 0.9rem;
-}
-
-.preview-age select {
-  font: inherit;
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid #5a514b;
-  background: #2a2420;
-  color: #f1e9e2;
-}
-
-.preview-bar button[aria-pressed="true"] {
-  background: #f1e9e2;
-  color: #1f1a17;
-  border-color: #f1e9e2;
-}
-
-.preview-bar button:focus-visible {
-  outline: 2px solid #f1c27d;
-  outline-offset: 2px;
 }

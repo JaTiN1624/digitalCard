@@ -256,12 +256,47 @@
   letter-spacing: normal !important;
 }
 
+/* ================= Background music button ================= */
+.music-btn {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 25;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(31, 26, 23, 0.85);
+  color: #fff;
+  font-size: 1.3rem;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.music-btn.is-playing span {
+  display: inline-block;
+  animation: music-spin 3s linear infinite;
+}
+
+@keyframes music-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ================= Accessibility ================= */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* Looping decoration (floating teddies, orbits, disco floors …) stays still */
+  .tpl *,
+  .tpl *::before,
+  .tpl *::after,
+  .music-btn span {
+    animation-iteration-count: 1 !important;
+    animation-duration: 0.01ms !important;
   }
 }
 

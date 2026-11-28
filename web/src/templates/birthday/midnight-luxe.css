@@ -1,0 +1,431 @@
+/* Midnight Luxe — black, champagne gold, editorial serif, a lot of quiet space */
+.tpl-luxe {
+  --bg: #0b0a09;
+  --surface: #14120f;
+  --text: #ece4d4;
+  --muted: #a99e88;
+  --accent: #d9b56a;
+  --accent-contrast: #14120f;
+  --gold: #d9b56a;
+  --border: #3a3226;
+  --heading: #f3dfa8;
+  --display: "Playfair Display", "Tiro Devanagari Hindi", Georgia, serif;
+  --serif: var(--display);
+  --sans: system-ui, "Segoe UI", "Nirmala UI", sans-serif;
+  --page-max: 100%;
+  --btn-radius: 0;
+  --cover-bg: #050504;
+  --cover-ink: #ece4d4;
+
+  font-family: var(--display);
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(217, 181, 106, 0.18), transparent 55%),
+    #0b0a09;
+}
+
+.tpl-luxe .btn {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  font-family: var(--sans);
+  letter-spacing: 0.18em;
+}
+
+.tpl-luxe .btn:hover {
+  background: var(--gold);
+  color: #14120f;
+}
+
+.tpl-luxe .btn-whatsapp {
+  color: #d9f2df;
+  border-color: #4f8f62;
+}
+
+/* ---------- Spotlight cover ---------- */
+.luxe-stage {
+  position: relative;
+  width: min(340px, 86vw);
+  padding: 70px 10px;
+  text-align: center;
+  isolation: isolate;
+}
+
+.luxe-stage > p {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  /* the text is only lit where the moving spotlight passes */
+  color: transparent;
+  background: radial-gradient(circle 110px at var(--spot, 50%) 50%, #f3dfa8 0%, #9d824a 45%, #1d1a15 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: luxe-search 5s ease-in-out infinite;
+}
+
+.luxe-stage-kicker {
+  font: 0.75rem/2 var(--sans);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.luxe-stage-name {
+  font: italic 400 clamp(3rem, 15vw, 4.4rem) / 1.1 var(--display);
+}
+
+.luxe-stage-date {
+  font: 0.85rem/2 var(--sans);
+  letter-spacing: 0.3em;
+}
+
+:lang(hi) .luxe-stage-kicker,
+:lang(mr) .luxe-stage-kicker,
+:lang(hi) .luxe-stage-date,
+:lang(mr) .luxe-stage-date {
+  font-size: 1rem;
+  text-transform: none;
+}
+
+@keyframes luxe-search {
+  0%,
+  100% { --spot: 20%; }
+  50% { --spot: 80%; }
+}
+
+@property --spot {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+.luxe-beam {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 160px;
+  height: 160px;
+  margin: -80px 0 0 -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(243, 223, 168, 0.25), transparent 70%);
+  pointer-events: none;
+}
+
+.cover-spotlight.is-opening .luxe-stage > p {
+  color: #f3dfa8;
+  transition: color 0.6s 0.3s;
+}
+
+/* ---------- Hero ---------- */
+.luxe-hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.luxe-age {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -55%;
+  font: 400 clamp(16rem, 70vw, 30rem) / 1 var(--display);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(217, 181, 106, 0.5);
+  pointer-events: none;
+  user-select: none;
+}
+
+.luxe-honour {
+  position: relative;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font: 0.78rem/1.6 var(--sans);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.luxe-name {
+  position: relative;
+  margin: 0;
+  color: var(--heading);
+  font: italic 400 clamp(3.4rem, 16vw, 6rem) / 1.05 var(--display);
+}
+
+.luxe-rule {
+  display: block;
+  width: 120px;
+  height: 1px;
+  margin: 26px auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.luxe-occasion {
+  position: relative;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.luxe-dateline {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 0;
+  margin: 26px 0 0;
+  color: var(--gold);
+  font: 0.8rem/1.6 var(--sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.luxe-dateline span + span::before {
+  content: "◆";
+  margin: 0 12px;
+  font-size: 0.5em;
+  vertical-align: 0.3em;
+}
+
+:lang(hi) :is(.luxe-honour, .luxe-dateline),
+:lang(mr) :is(.luxe-honour, .luxe-dateline) {
+  font-size: 1rem;
+  text-transform: none;
+}
+
+.luxe-photo {
+  max-width: 560px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--border);
+}
+
+/* ---------- Sections ---------- */
+.luxe-sec {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.luxe-title {
+  margin: 0 0 30px;
+  color: var(--heading);
+  font: italic 400 clamp(2rem, 8vw, 2.8rem) / 1.2 var(--display);
+}
+
+.luxe-label {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font: 0.72rem/1.6 var(--sans);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+}
+
+:lang(hi) .luxe-label,
+:lang(mr) .luxe-label {
+  font-size: 0.95rem;
+  text-transform: none;
+}
+
+.luxe-message {
+  position: relative;
+  margin: 0;
+  font: italic 400 1.45rem/1.6 var(--display);
+}
+
+.luxe-message::before {
+  content: "“";
+  display: block;
+  height: 0.6em;
+  color: var(--gold);
+  font-size: 4rem;
+  line-height: 1;
+}
+
+:lang(hi) .luxe-message,
+:lang(mr) .luxe-message,
+:lang(hi) .luxe-name,
+:lang(mr) .luxe-name,
+:lang(hi) .luxe-title,
+:lang(mr) .luxe-title {
+  font-style: normal;
+}
+
+.luxe-host {
+  margin: 18px 0 0;
+  color: var(--muted);
+}
+
+/* The running order, set like a printed menu card */
+.luxe-programme {
+  padding: 40px 26px;
+  border: 1px solid var(--gold);
+  outline: 1px solid var(--border);
+  outline-offset: -8px;
+  background: var(--surface);
+}
+
+.luxe-menu {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.luxe-menu-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-align: left;
+}
+
+.luxe-menu-name {
+  font-size: 1.2rem;
+}
+
+.luxe-leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--muted);
+  translate: 0 -4px;
+}
+
+.luxe-menu-time {
+  color: var(--gold);
+  font: 0.9rem var(--sans);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.tpl-luxe .countdown-units {
+  gap: 0;
+}
+
+.tpl-luxe .countdown-unit {
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+
+.tpl-luxe .countdown-unit + .countdown-unit {
+  border-left: 1px solid var(--border);
+}
+
+.tpl-luxe .countdown-value {
+  color: var(--heading);
+  font-size: clamp(2rem, 9vw, 2.8rem);
+}
+
+.luxe-pair {
+  display: grid;
+  gap: 16px;
+}
+
+.luxe-card {
+  padding: 30px 22px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(var(--gold), var(--gold)) top left / 18px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) top left / 1px 18px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) bottom right / 18px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) bottom right / 1px 18px no-repeat,
+    var(--surface);
+}
+
+.luxe-card-text {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.luxe-card-sub {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.luxe-map {
+  --map-radius: 0;
+  filter: grayscale(1) invert(0.9) contrast(0.9);
+  border: 1px solid var(--border);
+}
+
+.luxe-rsvp-card {
+  padding: 30px 22px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-align: left;
+}
+
+.tpl-luxe .rsvp-form h3 {
+  color: var(--heading);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.tpl-luxe .rsvp-form input:not([type="radio"]),
+.tpl-luxe .rsvp-form textarea {
+  border: 0;
+  border-bottom: 1px solid var(--gold);
+  border-radius: 0;
+  background: transparent;
+}
+
+.tpl-luxe .rsvp-form fieldset {
+  border-color: var(--border);
+  border-radius: 0;
+}
+
+.tpl-luxe .rsvp-form button {
+  border-radius: 0;
+  background: var(--gold);
+  color: #14120f;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.luxe-toast-btn {
+  padding: 16px 36px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--heading);
+  font: italic 1.3rem var(--display);
+  cursor: pointer;
+}
+
+.tpl-luxe .celebrate-message {
+  min-height: 1.6em;
+  color: var(--gold);
+}
+
+.luxe-foot {
+  padding: 70px 24px 80px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.luxe-monogram {
+  display: inline-grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold);
+  font: italic 2rem var(--display);
+}
+
+.luxe-thanks {
+  max-width: 28em;
+  margin: 20px auto 24px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media (min-width: 640px) {
+  .luxe-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}

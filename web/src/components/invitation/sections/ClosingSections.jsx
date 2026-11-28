@@ -6,26 +6,34 @@ import SectionHeading from "./SectionHeading.jsx";
 import RsvpForm from "../../../features/rsvp/RsvpForm.jsx";
 import { coupleNames, displayName } from "../../../utils/invitation.js";
 
-export function RsvpSection({ invitation, t, preview, ornament }) {
+// The RSVP form in a revealing card; confetti bursts from the card when a guest says yes.
+// Templates place it inside their own section design.
+export function RsvpCard({ invitation, t, preview, className = "rsvp", preset = "rise" }) {
   const cardRef = useRef(null);
   const celebrate = useCelebrate();
   return (
+    <ScrollReveal ref={cardRef} className={className} preset={preset}>
+      <RsvpForm
+        slug={invitation.slug}
+        t={t}
+        preview={preview}
+        onSuccess={(attendance) => attendance !== "NOT_ATTENDING" && celebrate("burst", cardRef.current)}
+      />
+    </ScrollReveal>
+  );
+}
+
+export function RsvpSection({ invitation, t, preview, ornament }) {
+  return (
     <section className="sec sec-rsvp" id="rsvp">
       <SectionHeading eyebrow={t("rsvp.eyebrow")} ornament={ornament} />
-      <ScrollReveal ref={cardRef} className="rsvp" preset="rise">
-        <RsvpForm
-          slug={invitation.slug}
-          t={t}
-          preview={preview}
-          onSuccess={(attendance) => attendance !== "NOT_ATTENDING" && celebrate("burst", cardRef.current)}
-        />
-      </ScrollReveal>
+      <RsvpCard invitation={invitation} t={t} preview={preview} />
     </section>
   );
 }
 
-// Share the invitation on WhatsApp (or the phone's share sheet) and copy the link
-export function ShareSection({ invitation, t }) {
+// WhatsApp, the phone's share sheet and copy-link buttons for this invitation
+export function ShareButtons({ invitation, t, className = "sec-actions" }) {
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
   const text = t("share.text", { names: displayName(invitation) });
@@ -42,10 +50,8 @@ export function ShareSection({ invitation, t }) {
   };
 
   return (
-    <section className="sec sec-share">
-      <ScrollReveal className="share-card" preset="zoom">
-        <p className="sec-eyebrow">{t("share.eyebrow")}</p>
-        <div className="sec-actions">
+    <>
+      <div className={className}>
           <a
             className="btn btn-whatsapp"
             href={`https://wa.me/?text=${encodeURIComponent(`${text}\n${url}`)}`}
@@ -62,10 +68,21 @@ export function ShareSection({ invitation, t }) {
           <button type="button" className="btn btn-ghost" onClick={copy}>
             {copied ? t("share.copied") : t("share.copy")}
           </button>
-        </div>
-        <p className="sr-only" role="status">
-          {copied ? t("share.copied") : ""}
-        </p>
+      </div>
+      <p className="sr-only" role="status">
+        {copied ? t("share.copied") : ""}
+      </p>
+    </>
+  );
+}
+
+// Share the invitation on WhatsApp (or the phone's share sheet) and copy the link
+export function ShareSection({ invitation, t }) {
+  return (
+    <section className="sec sec-share">
+      <ScrollReveal className="share-card" preset="zoom">
+        <p className="sec-eyebrow">{t("share.eyebrow")}</p>
+        <ShareButtons invitation={invitation} t={t} />
       </ScrollReveal>
     </section>
   );

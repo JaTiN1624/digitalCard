@@ -1,0 +1,398 @@
+/* Royal Prince — royal blue velvet, burnished gold, heraldic shapes, Cinzel capitals */
+.tpl-prince {
+  --bg: #0f1f4d;
+  --surface: #132760;
+  --text: #eef1fb;
+  --muted: #b4bedd;
+  --accent: #d8b25a;
+  --accent-contrast: #0f1f4d;
+  --gold: #d8b25a;
+  --border: #2c4486;
+  --heading: #f0d68c;
+  --display: "Cinzel", "Tiro Devanagari Hindi", Georgia, serif;
+  --serif: "EB Garamond", "Tiro Devanagari Hindi", Georgia, serif;
+  --sans: var(--serif);
+  --page-max: 100%;
+  --btn-radius: 4px;
+  --crest-gold: #d8b25a;
+  --crest-field: #1d3a8a;
+  --wax: #8e1b2a;
+  --cover-bg: radial-gradient(circle at 50% 40%, #1d3a8a, #0a1638 75%);
+  --cover-ink: #eef1fb;
+
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  background:
+    radial-gradient(circle at 50% 0, rgba(216, 178, 90, 0.15), transparent 50%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.035) 1.5px, transparent 2px) 0 0 / 22px 22px,
+    #0f1f4d;
+}
+
+.tpl-prince:lang(mr) {
+  --display: "Cinzel", "Tiro Devanagari Marathi", Georgia, serif;
+  --serif: "EB Garamond", "Tiro Devanagari Marathi", Georgia, serif;
+}
+
+.tpl-prince .btn {
+  background: linear-gradient(#e9cc7f, #b8913f);
+  color: #0f1f4d;
+  font-family: var(--display);
+  font-weight: 700;
+}
+
+.tpl-prince .btn-ghost {
+  background: transparent;
+  color: var(--heading);
+  border: 1px solid var(--gold);
+}
+
+/* ---------- Sealed letter cover ---------- */
+.prince-letter {
+  position: relative;
+  width: min(300px, 84vw);
+}
+
+.prince-paper {
+  padding: 50px 24px 90px;
+  background: linear-gradient(#f8f0dc, #ecdcb4);
+  color: #2a2a3a;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.6);
+  transform-origin: top;
+}
+
+.prince-letter-kicker {
+  margin: 0;
+  color: #8e1b2a;
+  font: 700 0.8rem var(--display);
+  letter-spacing: 0.24em;
+}
+
+.prince-letter-name {
+  margin: 10px 0 4px;
+  color: #1d3a8a;
+  font: 700 clamp(2rem, 10vw, 2.6rem) / 1.1 var(--display);
+}
+
+.prince-letter-date {
+  margin: 0;
+  color: #6a5a3a;
+}
+
+.prince-seal {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 92px;
+  margin-left: -46px;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+}
+
+.prince-seal.half-l { clip-path: polygon(0 0, 52% 0, 44% 40%, 56% 60%, 46% 100%, 0 100%); }
+.prince-seal.half-r { clip-path: polygon(52% 0, 100% 0, 100% 100%, 46% 100%, 56% 60%, 44% 40%); }
+
+/* ---------- Heraldic hero ---------- */
+.prince-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 50px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.prince-banner {
+  position: absolute;
+  top: 0;
+  width: 44px;
+  height: 46%;
+  background: linear-gradient(90deg, #8e1b2a, #b22a3c, #8e1b2a);
+  border-left: 3px solid var(--gold);
+  border-right: 3px solid var(--gold);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 88%, 0 100%);
+  transform-origin: top;
+  animation: prince-sway 6s ease-in-out infinite;
+}
+
+.prince-banner.left { left: 14px; }
+.prince-banner.right { right: 14px; animation-delay: -3s; }
+
+@keyframes prince-sway {
+  50% { transform: rotate(1.5deg); }
+}
+
+.prince-decree {
+  margin: 0;
+  color: var(--gold);
+  font: 600 0.8rem var(--display);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+:lang(hi) .prince-decree,
+:lang(mr) .prince-decree,
+:lang(hi) .prince-label,
+:lang(mr) .prince-label {
+  font-size: 1rem;
+  font-family: var(--serif);
+  font-weight: 700;
+}
+
+.prince-crest {
+  width: 150px;
+  margin: 18px 0 8px;
+  filter: drop-shadow(0 0 20px rgba(216, 178, 90, 0.35));
+}
+
+.prince-name {
+  margin: 0;
+  color: var(--heading);
+  font: 700 clamp(2.4rem, 12vw, 4rem) / 1.1 var(--display);
+}
+
+.prince-rule {
+  width: 160px;
+  height: 6px;
+  margin: 16px 0;
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+}
+
+.prince-line {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.prince-court {
+  max-width: 20em;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.prince-portrait {
+  width: min(300px, 80vw);
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  border: 3px solid var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: 6px;
+}
+
+/* ---------- Sections ---------- */
+.prince-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 56px 22px;
+  text-align: center;
+}
+
+.prince-title {
+  margin: 0 0 26px;
+  color: var(--heading);
+  font: 600 clamp(1.5rem, 6.5vw, 2rem) / 1.25 var(--display);
+}
+
+.prince-label {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font: 600 0.78rem var(--display);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.prince-proclamation {
+  position: relative;
+  padding: 44px 30px;
+  border: 1px solid var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: -8px;
+  background: rgba(10, 22, 56, 0.6);
+}
+
+.prince-corner {
+  position: absolute;
+  width: 40px;
+  color: var(--gold);
+}
+
+.prince-corner.tl { top: 4px; left: 4px; }
+.prince-corner.tr { top: 4px; right: 4px; transform: scaleX(-1); }
+.prince-corner.bl { bottom: 4px; left: 4px; transform: scaleY(-1); }
+.prince-corner.br { bottom: 4px; right: 4px; transform: scale(-1); }
+
+.prince-message {
+  margin: 0;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+:lang(hi) .prince-message,
+:lang(mr) .prince-message {
+  font-style: normal;
+}
+
+.prince-host {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+/* Notched ribbon */
+.prince-ribbon {
+  display: inline-grid;
+  gap: 2px;
+  padding: 18px 60px;
+  background: linear-gradient(#b22a3c, #8e1b2a);
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0, 92% 50%, 100% 100%, 0 100%, 8% 50%);
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+.prince-ribbon strong {
+  color: #f6e2a8;
+  font: 700 1.6rem/1.2 var(--display);
+}
+
+.tpl-prince .countdown {
+  margin-top: 26px;
+}
+
+.tpl-prince .countdown-unit {
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 0;
+}
+
+.tpl-prince .countdown-value {
+  color: var(--heading);
+}
+
+/* Shields */
+.prince-shields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prince-shield {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.prince-shield-face {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 112px;
+  background: linear-gradient(#1d3a8a, #142a68);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
+  box-shadow: inset 0 0 0 4px var(--gold);
+  position: relative;
+}
+
+.prince-shield-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--gold), var(--gold)) center / 4px 100% no-repeat;
+  opacity: 0;
+}
+
+.prince-shield:nth-child(odd) .prince-shield-face {
+  background: linear-gradient(#b22a3c, #8e1b2a);
+}
+
+.prince-shield-time {
+  margin-top: -16px;
+  color: #f6e2a8;
+  font: 700 0.95rem var(--display);
+}
+
+.prince-shield-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.prince-panel {
+  padding: 26px 20px;
+  border: 1px solid var(--gold);
+  background: rgba(10, 22, 56, 0.6);
+}
+
+.prince-rsvp {
+  text-align: left;
+}
+
+.prince-venue {
+  margin: 0;
+  color: var(--heading);
+  font: 600 1.4rem/1.25 var(--display);
+}
+
+.prince-address {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.prince-map {
+  --map-radius: 0;
+  border: 2px solid var(--gold);
+}
+
+.tpl-prince .rsvp-form h3 {
+  color: var(--heading);
+  font-family: var(--display);
+}
+
+.tpl-prince .rsvp-form input:not([type="radio"]),
+.tpl-prince .rsvp-form textarea {
+  background: #0a1638;
+  border-color: var(--border);
+}
+
+.tpl-prince .rsvp-form button {
+  border-radius: 4px;
+  background: linear-gradient(#e9cc7f, #b8913f);
+  color: #0f1f4d;
+  font-family: var(--display);
+}
+
+.prince-hail {
+  padding: 16px 32px;
+  border: 2px solid var(--gold);
+  background: linear-gradient(#b22a3c, #8e1b2a);
+  color: #f6e2a8;
+  font: 700 1.1rem var(--display);
+  cursor: pointer;
+}
+
+.tpl-prince .celebrate-message {
+  color: var(--heading);
+}
+
+.prince-foot {
+  padding: 60px 22px 80px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.prince-foot-crest {
+  width: 80px;
+}
+
+.prince-thanks {
+  max-width: 24em;
+  margin: 14px auto 20px;
+  color: var(--muted);
+  font-style: italic;
+}

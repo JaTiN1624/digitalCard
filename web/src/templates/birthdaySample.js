@@ -15,7 +15,44 @@ const PEOPLE = {
   "bday-luxury": { EN: "Rohan", HI: "रोहन", MR: "रोहन" },
   "bday-garden": { EN: "Meera", HI: "मीरा", MR: "मीरा" },
   "bday-modern": { EN: "Sunita", HI: "सुनीता", MR: "सुनीता" },
+  "bday-safari": { EN: "Advik", HI: "अद्विक", MR: "अद्विक" },
+  "bday-carnival": { EN: "Siya", HI: "सिया", MR: "सिया" },
+  "bday-prince": { EN: "Reyansh", HI: "रेयांश", MR: "रेयांश" },
+  "bday-memories": { EN: "Shobha", HI: "शोभा", MR: "शोभा" },
 };
+
+// Birthday Memories is photo-first: its preview gets a memory timeline and a few moments
+// (sample photos from /public/samples, see the README there for credits)
+const MEMORIES = {
+  EN: [
+    ["The wedding day", "1989", "The day it all began, in Nagpur."],
+    ["A new home", "1996", "Our first house, and the garden she still loves."],
+    ["Family trips", "2008", "Every summer, somewhere new."],
+    ["Today", "Now", "Sixty years of love, laughter and chai."],
+  ],
+  HI: [
+    ["शादी का दिन", "1989", "जहाँ से सब शुरू हुआ, नागपुर में।"],
+    ["नया घर", "1996", "हमारा पहला घर, और वह बगीचा जो आज भी प्यारा है।"],
+    ["परिवार के सफ़र", "2008", "हर गर्मी, एक नई जगह।"],
+    ["आज", "अब", "साठ वर्षों का प्यार, हँसी और चाय।"],
+  ],
+  MR: [
+    ["लग्नाचा दिवस", "1989", "जिथून सगळं सुरू झालं, नागपुरात."],
+    ["नवं घर", "1996", "आमचं पहिलं घर, आणि आजही आवडणारी ती बाग."],
+    ["कुटुंबाच्या सहली", "2008", "दर उन्हाळ्यात, नवीन ठिकाणी."],
+    ["आज", "आता", "साठ वर्षांचं प्रेम, हसू आणि चहा."],
+  ],
+};
+const PHOTOS = ["/samples/couple-portrait.jpg", "/samples/couple-tree.jpg", "/samples/couple-landscape.jpg", "/samples/couple-riverside.jpg"];
+
+function memoriesExtras(language) {
+  const items = MEMORIES[language] ?? MEMORIES.EN;
+  return {
+    coverImage: PHOTOS[0],
+    timeline: items.map(([title, date, text], i) => ({ title, date, text, image: PHOTOS[i] })),
+    gallery: [...PHOTOS, "/samples/couple-engagement.jpg"].map((url) => ({ url })),
+  };
+}
 
 const CONTENT = {
   EN: {
@@ -91,6 +128,7 @@ export function sampleBirthday(language, templateKey, age) {
       mapUrl: "https://maps.google.com/?q=Koregaon+Park+Pune",
       endDate: end.toISOString(),
       events: names.map((eventName, i) => ({ name: eventName, date: at(i * 45), venue })),
+      ...(templateKey === "bday-memories" ? memoriesExtras(language) : {}),
     },
   };
 }

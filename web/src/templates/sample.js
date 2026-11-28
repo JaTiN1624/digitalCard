@@ -3,6 +3,7 @@
 // function cards use original illustrations.
 import { TEMPLATES } from "./index.js";
 import { sampleBirthday } from "./birthdaySample.js";
+import { sampleAnniversary, sampleBabyShower } from "./occasionSample.js";
 
 const CONTENT = {
   EN: {
@@ -92,6 +93,8 @@ const COVER = {
 
 export function sampleInvitation(language = "EN", templateKey = "classic", age = null) {
   if (TEMPLATES[templateKey]?.collection === "birthday") return sampleBirthday(language, templateKey, age);
+  if (TEMPLATES[templateKey]?.occasion === "ANNIVERSARY") return sampleAnniversary(language, templateKey);
+  if (TEMPLATES[templateKey]?.occasion === "BABY_SHOWER") return sampleBabyShower(language, templateKey);
   const c = CONTENT[language] ?? CONTENT.EN;
   const occasion = TEMPLATES[templateKey]?.occasion ?? "WEDDING";
   const destination = templateKey === "destination";

@@ -1,9 +1,11 @@
 import { STRINGS as BASE } from "./strings.js";
 import { BIRTHDAY_STRINGS } from "./birthdayStrings.js";
+import { BIRTHDAY_THEME_STRINGS } from "./birthdayThemeStrings.js";
+import { OCCASION_STRINGS } from "./occasionStrings.js";
 
 // One dictionary per language: shared wording plus the birthday collection's wording
 const STRINGS = Object.fromEntries(
-  Object.entries(BASE).map(([code, dict]) => [code, { ...dict, ...BIRTHDAY_STRINGS[code] }]),
+  Object.entries(BASE).map(([code, dict]) => [code, { ...dict, ...BIRTHDAY_STRINGS[code], ...BIRTHDAY_THEME_STRINGS[code], ...OCCASION_STRINGS[code] }]),
 );
 
 export const LANGUAGES = [

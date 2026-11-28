@@ -1,0 +1,366 @@
+/* Enchanted Garden — watercolour blush and sage on warm paper, airy serif type */
+.tpl-garden {
+  --bg: #fbf7f0;
+  --surface: #ffffff;
+  --text: #4a4a3f;
+  --muted: #858270;
+  --accent: #7f9f78;
+  --accent-contrast: #ffffff;
+  --gold: #c9a16a;
+  --border: #e6e0cf;
+  --heading: #6d8a66;
+  --display: "Italiana", "Tiro Devanagari Hindi", Georgia, serif;
+  --serif: "Cormorant Garamond", "Tiro Devanagari Hindi", Georgia, serif;
+  --sans: var(--serif);
+  --page-max: 100%;
+  --btn-radius: 999px;
+  --petal-a: #f6c3cd;
+  --petal-b: #e98aa0;
+  --petal-c: #f7d27c;
+  --sage: #a9c7a4;
+  --stem: #7f9f78;
+  --cover-bg: radial-gradient(circle at 50% 50%, #fffaf3, #f3eadb 80%);
+  --cover-ink: #4a4a3f;
+  --cover-accent: #6d8a66;
+
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  background:
+    radial-gradient(ellipse at 0% 30%, rgba(246, 195, 205, 0.25), transparent 40%),
+    radial-gradient(ellipse at 100% 70%, rgba(169, 199, 164, 0.25), transparent 40%),
+    #fbf7f0;
+}
+
+.tpl-garden:lang(mr) {
+  --display: "Italiana", "Tiro Devanagari Marathi", Georgia, serif;
+  --serif: "Cormorant Garamond", "Tiro Devanagari Marathi", Georgia, serif;
+}
+
+.tpl-garden .btn {
+  background: var(--accent);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.tpl-garden .btn-ghost {
+  background: transparent;
+  color: var(--heading);
+  border: 1px solid var(--accent);
+}
+
+/* ---------- Bud cover ---------- */
+.garden-bud {
+  position: relative;
+  width: 220px;
+  height: 320px;
+}
+
+.garden-bud-flower {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  width: 200px;
+  margin-left: -100px;
+  z-index: 1;
+}
+
+.garden-bud-stem {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70px;
+  height: 180px;
+  margin-left: -35px;
+}
+
+.cover-bloom .cover-names {
+  font-family: var(--display);
+  color: var(--heading);
+}
+
+/* ---------- Floral arch hero ---------- */
+.garden-hero {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 40px 18px;
+}
+
+.garden-arch {
+  position: relative;
+  width: min(380px, 92vw);
+  padding: 70px 26px 80px;
+}
+
+.garden-arch-inner {
+  position: relative;
+  z-index: 1;
+  padding: 90px 22px 60px;
+  text-align: center;
+  border-radius: 999px 999px 24px 24px;
+  border: 1px solid #e3d6bf;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(246, 195, 205, 0.35), transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(169, 199, 164, 0.35), transparent 55%),
+    #fffdf8;
+  box-shadow: 0 30px 60px -40px rgba(74, 74, 63, 0.5);
+}
+
+.garden-ab {
+  position: absolute;
+  z-index: 2;
+  width: 110px;
+  filter: saturate(0.9);
+}
+
+.ab-1 { top: 30px; left: 0; }
+.ab-2 { top: 10px; left: 90px; width: 70px; }
+.ab-3 { top: 40px; right: 0; width: 120px; }
+.ab-4 { bottom: 40px; left: -10px; width: 90px; }
+.ab-5 { bottom: 30px; right: 10px; width: 80px; }
+
+.garden-sprig {
+  position: absolute;
+  z-index: 1;
+  width: 50px;
+  height: 140px;
+}
+
+.gs-1 { top: 120px; left: -6px; rotate: -20deg; }
+.gs-2 { top: 130px; right: -6px; rotate: 20deg; }
+
+.garden-join {
+  margin: 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.garden-name {
+  margin: 10px 0;
+  color: var(--heading);
+  font: 400 clamp(2.8rem, 14vw, 4.2rem) / 1.05 var(--display);
+}
+
+.garden-line {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.garden-date {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+.garden-photo {
+  width: min(320px, 82vw);
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 0 0;
+}
+
+/* ---------- Sections ---------- */
+.garden-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 56px 20px;
+  text-align: center;
+}
+
+.garden-title {
+  margin: 0 0 26px;
+  color: var(--heading);
+  font: 400 clamp(2rem, 8vw, 2.6rem) / 1.2 var(--display);
+}
+
+.garden-wash {
+  position: relative;
+  padding: 34px 50px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(246, 195, 205, 0.35), transparent 70%);
+}
+
+.garden-wash-sprig {
+  position: absolute;
+  top: 10px;
+  width: 36px;
+  height: 100px;
+}
+
+.garden-wash-sprig.left { left: 0; rotate: -12deg; }
+.garden-wash-sprig.right { right: 0; rotate: 12deg; }
+
+.garden-message {
+  margin: 0;
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+:lang(hi) .garden-message,
+:lang(mr) .garden-message {
+  font-style: normal;
+}
+
+.garden-host {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+/* Pressed-flower cards */
+.garden-pressed {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.garden-card {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 20px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 #fff inset, 0 14px 30px -24px rgba(74, 74, 63, 0.6);
+}
+
+.garden-card-bloom {
+  width: 54px;
+  margin-bottom: 6px;
+}
+
+.garden-card:nth-child(even) .garden-card-bloom {
+  --petal-a: #d9e7d2;
+  --petal-b: #a9c7a4;
+}
+
+.garden-card-time {
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.garden-card-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Leafy wreath around the date */
+.garden-wreath {
+  position: relative;
+  display: inline-grid;
+  place-content: center;
+  width: 260px;
+  height: 260px;
+}
+
+.garden-wreath-leaf {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 80px;
+  margin: -40px 0 0 -17px;
+  transform: rotate(var(--r)) translateY(-96px);
+}
+
+.garden-wreath-day {
+  color: var(--heading);
+  font: 400 4rem/1 var(--display);
+}
+
+.garden-wreath-month {
+  font-size: 1.3rem;
+}
+
+.garden-wreath-time {
+  color: var(--muted);
+}
+
+.tpl-garden .countdown {
+  margin-top: 20px;
+}
+
+.tpl-garden .countdown-unit {
+  border-radius: 999px 999px 12px 12px;
+  border-color: var(--border);
+}
+
+.tpl-garden .countdown-value {
+  color: var(--heading);
+}
+
+.garden-venue-card,
+.garden-rsvp {
+  padding: 26px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.garden-rsvp {
+  text-align: left;
+}
+
+.garden-venue {
+  margin: 0;
+  color: var(--heading);
+  font: 400 1.7rem var(--display);
+}
+
+.garden-address,
+.garden-dress {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.garden-map {
+  --map-radius: 160px 160px 8px 8px;
+}
+
+.tpl-garden .rsvp-form h3 {
+  color: var(--heading);
+  font-family: var(--display);
+  font-weight: 400;
+}
+
+.tpl-garden .rsvp-form button {
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.garden-foot {
+  padding: 50px 20px 80px;
+  text-align: center;
+}
+
+.garden-foot-blooms {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.garden-foot-blooms svg {
+  width: 60px;
+}
+
+.garden-foot-blooms svg:nth-child(2) {
+  width: 84px;
+  margin-top: -14px;
+}
+
+.garden-thanks {
+  max-width: 24em;
+  margin: 18px auto 6px;
+  font-style: italic;
+}
+
+.garden-sign {
+  margin: 0 0 20px;
+  color: var(--heading);
+  font: 400 2rem var(--display);
+}

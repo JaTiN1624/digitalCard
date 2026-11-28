@@ -302,7 +302,22 @@ const VARIANTS = {
   comic: Comic,
 };
 
-export default function OpeningCover({ variant = "envelope", invitation, t, onOpened, emblem = null, decoration = null, ticketKind }) {
+// Templates with their own opening pass `object` (a component that receives the same props as
+// the built-in variants plus `opening`), its `duration` in seconds and whether to show the
+// shared heading. `variant` is then only used as the CSS class (cover-<variant>).
+export default function OpeningCover({
+  variant = "envelope",
+  invitation,
+  t,
+  onOpened,
+  emblem = null,
+  decoration = null,
+  ticketKind,
+  object = null,
+  duration,
+  heading,
+  prompt,
+}) {
   const [opening, setOpening] = useState(false);
   const started = useRef(false);
   const reduced = useReducedMotion();
@@ -315,13 +330,15 @@ export default function OpeningCover({ variant = "envelope", invitation, t, onOp
   const display = displayName(invitation);
   const initials = couple ? `${initialOf(names.groom)} & ${initialOf(names.bride)}` : initialOf(display);
   const date = invitation.eventDate ? formatShortDate(invitation.eventDate, invitation.language) : null;
-  const Object3D = VARIANTS[variant] ?? Envelope;
+  const Object3D = object ?? VARIANTS[variant] ?? Envelope;
+  const seconds = duration ?? DURATION[variant] ?? 1.6;
+  const showNames = heading ?? !["cinema", "ticket", "arcade", "comic"].includes(variant);
 
   const open = () => {
     if (started.current) return; // ignore double taps
     started.current = true;
     setOpening(true);
-    const total = reduced ? 0 : DURATION[variant] * 1000;
+    const total = reduced ? 0 : seconds * 1000;
     window.setTimeout(() => celebrate("open"), total * 0.55);
     window.setTimeout(onOpened, total);
   };
@@ -341,8 +358,8 @@ export default function OpeningCover({ variant = "envelope", invitation, t, onOp
         animate={opening ? { opacity: 0, y: -16 } : { opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: opening ? 0 : 0.3 }}
       >
-        {variant !== "cinema" && <p className="cover-eyebrow">{label}</p>}
-        {!["cinema", "ticket", "arcade", "comic"].includes(variant) &&
+        {variant !== "cinema" && heading !== false && <p className="cover-eyebrow">{label}</p>}
+        {showNames &&
           (couple ? (
             <p className="cover-names">
               {names.groom} <span>&amp;</span> {names.bride}
@@ -390,7 +407,7 @@ export default function OpeningCover({ variant = "envelope", invitation, t, onOp
         transition={opening ? { duration: 0.3 } : { y: { duration: 2.2, repeat: Infinity, ease: "easeInOut" }, opacity: { delay: 1 } }}
       >
         <span className="cover-tap" />
-        {t("cover.tap")}
+        {prompt ?? t("cover.tap")}
       </motion.button>
     </motion.section>
   );

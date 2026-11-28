@@ -1,0 +1,439 @@
+/* Game On — dark arcade, neon pixels, chunky stepped borders */
+.tpl-game {
+  --bg: #0d0b1f;
+  --surface: #17143a;
+  --text: #e8e6ff;
+  --muted: #9c98d6;
+  --accent: #39ff14;
+  --accent-contrast: #0d0b1f;
+  --gold: #ffe600;
+  --border: #3b3680;
+  --heading: #00e5ff;
+  --pixel-font: "Press Start 2P", "Baloo 2", monospace;
+  --display: "VT323", "Baloo 2", monospace;
+  --serif: var(--display);
+  --sans: "VT323", "Baloo 2", monospace;
+  --page-max: 100%;
+  --btn-radius: 0;
+  --pixel: #ff2bd6;
+  --cover-bg: #0d0b1f;
+
+  font: 1.45rem/1.35 var(--display);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 50%, transparent 50%) 0 0 / 100% 4px,
+    radial-gradient(ellipse at 50% 0%, #2a1f6b, #0d0b1f 70%);
+}
+
+.tpl-game:lang(hi),
+.tpl-game:lang(mr) {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* stepped pixel border used by panels and buttons */
+.tpl-game .btn,
+.game-panel,
+.game-level,
+.game-dialog,
+.tpl-game .countdown-unit,
+.game-power {
+  border: 0;
+  box-shadow:
+    0 -4px 0 0 var(--edge, var(--accent)),
+    0 4px 0 0 var(--edge, var(--accent)),
+    -4px 0 0 0 var(--edge, var(--accent)),
+    4px 0 0 0 var(--edge, var(--accent));
+}
+
+.tpl-game .btn {
+  margin: 6px;
+  background: var(--accent);
+  color: #0d0b1f;
+  font: 0.62rem/1.6 var(--pixel-font);
+  letter-spacing: 0;
+}
+
+.tpl-game .btn-ghost {
+  --edge: var(--heading);
+  background: transparent;
+  color: var(--heading);
+}
+
+.tpl-game .btn-whatsapp {
+  --edge: #25d366;
+  background: #25d366;
+}
+
+:lang(hi) .tpl-game .btn,
+:lang(mr) .tpl-game .btn,
+.tpl-game:lang(hi) .btn,
+.tpl-game:lang(mr) .btn {
+  font: 600 0.95rem/1.4 "Baloo 2", sans-serif;
+}
+
+/* ---------- HUD hero ---------- */
+.game-hud-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px 28px;
+}
+
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px 14px;
+  color: var(--gold);
+  font: 0.6rem var(--pixel-font);
+}
+
+.game-hearts {
+  display: flex;
+  gap: 4px;
+}
+
+.game-heart {
+  width: 16px;
+}
+
+.game-coin-icon {
+  width: 12px;
+  vertical-align: -2px;
+}
+
+.game-screen {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 16px 90px;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(#1b1650, #2b1f7a 60%, #4a2a9a);
+  box-shadow: 0 0 0 4px #000, 0 0 0 8px var(--border), 0 0 40px rgba(0, 229, 255, 0.25);
+}
+
+.game-kicker {
+  margin: 0;
+  color: var(--muted);
+}
+
+.game-name {
+  margin: 0;
+  color: #fff;
+  font: 400 clamp(1.6rem, 9vw, 2.8rem) / 1.3 var(--pixel-font);
+  text-shadow: 4px 4px 0 #ff2bd6, -2px -2px 0 #00e5ff;
+  word-break: break-word;
+}
+
+.tpl-game:lang(hi) .game-name,
+.tpl-game:lang(mr) .game-name {
+  font: 800 clamp(2.4rem, 12vw, 3.4rem) / 1.3 "Baloo 2", sans-serif;
+}
+
+.game-line {
+  margin: 0;
+  color: var(--gold);
+}
+
+.tpl-game .age-reveal {
+  color: var(--gold);
+}
+
+.tpl-game .age-level-label,
+.tpl-game .age-badge {
+  font-family: var(--pixel-font);
+  font-size: 0.7rem;
+}
+
+.tpl-game .age-number {
+  font: 2.6rem var(--pixel-font);
+  color: var(--accent);
+}
+
+.game-coins .game-coin {
+  position: absolute;
+  width: 22px;
+  animation: game-coin 1.6s steps(4) infinite;
+}
+.game-coin.c0 { left: 12%; top: 18%; }
+.game-coin.c1 { right: 14%; top: 26%; animation-delay: 0.4s; }
+.game-coin.c2 { left: 22%; bottom: 34%; animation-delay: 0.8s; }
+.game-coin.c3 { right: 24%; bottom: 40%; animation-delay: 1.2s; }
+
+@keyframes game-coin {
+  50% { transform: translateY(-10px) scaleX(0.4); }
+}
+
+.game-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  background:
+    linear-gradient(90deg, #3a8a2e 50%, #2f7426 50%) 0 0 / 32px 14px repeat-x,
+    repeating-linear-gradient(90deg, #8a4a24 0 30px, #6e3a1c 30px 32px) 0 14px / 100% 100%;
+}
+
+.game-blink {
+  margin: 20px 0 0;
+  color: var(--heading);
+  text-align: center;
+  animation: game-blink 1.1s steps(2) infinite;
+}
+
+@keyframes game-blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Sections ---------- */
+.game-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 18px;
+  text-align: center;
+}
+
+.game-title {
+  margin: 0 0 26px;
+  color: var(--heading);
+  font: 400 clamp(0.9rem, 4vw, 1.15rem) / 1.6 var(--pixel-font);
+  text-shadow: 3px 3px 0 #ff2bd6;
+}
+
+.tpl-game:lang(hi) .game-title,
+.tpl-game:lang(mr) .game-title {
+  font: 800 1.6rem/1.4 "Baloo 2", sans-serif;
+}
+
+.game-label {
+  margin: 0;
+  color: var(--gold);
+}
+
+/* RPG dialogue box */
+.game-dialog {
+  --edge: #fff;
+  position: relative;
+  padding: 30px 20px 26px;
+  background: #0a0a2a;
+  text-align: left;
+}
+
+.game-dialog-tag {
+  position: absolute;
+  top: -18px;
+  left: 14px;
+  padding: 4px 10px;
+  background: var(--heading);
+  color: #0d0b1f;
+  font-size: 1.1rem;
+}
+
+.game-dialog-text {
+  margin: 0;
+}
+
+.game-dialog-next {
+  position: absolute;
+  right: 14px;
+  bottom: 6px;
+  color: var(--gold);
+  animation: game-blink 0.9s steps(2) infinite;
+}
+
+.tpl-game .countdown-units {
+  gap: 14px;
+}
+
+.tpl-game .countdown-unit {
+  --edge: var(--heading);
+  background: #0a0a2a;
+  border-radius: 0;
+}
+
+.tpl-game .countdown-value {
+  color: var(--accent);
+  font: 1.3rem var(--pixel-font);
+}
+
+.tpl-game .countdown-label {
+  font: 1rem var(--display);
+  letter-spacing: 0;
+}
+
+.game-date {
+  margin: 22px 0 6px;
+  color: var(--gold);
+}
+
+/* Level select grid */
+.game-levels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+}
+
+.game-level {
+  --edge: var(--border);
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 16px 8px;
+  background: var(--surface);
+  transition: transform 0.15s steps(2);
+}
+
+.game-level:first-child {
+  --edge: var(--accent);
+}
+
+.game-level:hover {
+  transform: translateY(-4px);
+}
+
+.game-level-num {
+  color: var(--gold);
+  font: 0.55rem var(--pixel-font);
+}
+
+.tpl-game:lang(hi) .game-level-num,
+.tpl-game:lang(mr) .game-level-num {
+  font: 600 0.95rem "Baloo 2", sans-serif;
+}
+
+.game-level-star {
+  width: 30px;
+}
+
+.game-level-name {
+  line-height: 1.1;
+}
+
+.game-level-time {
+  color: var(--muted);
+}
+
+.game-bossbar {
+  height: 16px;
+  margin: -10px auto 20px;
+  max-width: 280px;
+  background: #2a0a1a;
+  box-shadow: 0 0 0 3px #fff;
+}
+
+.game-bossbar span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #ff2b2b, #ff8a00);
+  animation: game-boss 4s steps(10) infinite alternate;
+  transform-origin: left;
+}
+
+@keyframes game-boss {
+  to { transform: scaleX(0.3); }
+}
+
+.tpl-game .cake-done {
+  color: var(--accent);
+}
+
+.game-panel {
+  --edge: var(--heading);
+  padding: 22px 18px;
+  background: var(--surface);
+}
+
+.game-venue {
+  margin: 0;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.game-address,
+.game-dress {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.game-dress span {
+  color: var(--gold);
+}
+
+.game-map {
+  --map-radius: 0;
+  box-shadow: 0 0 0 4px #000;
+  filter: saturate(1.4) contrast(1.1);
+}
+
+.game-rsvp {
+  text-align: left;
+}
+
+.tpl-game .rsvp-form input:not([type="radio"]),
+.tpl-game .rsvp-form textarea {
+  border: 2px solid var(--border);
+  border-radius: 0;
+  background: #0a0a2a;
+  font-size: 1.3rem;
+}
+
+.tpl-game .rsvp-form fieldset {
+  border: 2px solid var(--border);
+  border-radius: 0;
+}
+
+.tpl-game .rsvp-form button {
+  border-radius: 0;
+  background: var(--accent);
+  color: #0d0b1f;
+  font: 0.7rem/1.8 var(--pixel-font);
+}
+
+.tpl-game .rsvp-form h3 {
+  color: var(--heading);
+}
+
+.game-power {
+  --edge: var(--gold);
+  padding: 18px 26px;
+  background: #ff2bd6;
+  color: #fff;
+  font: 0.85rem var(--pixel-font);
+  cursor: pointer;
+}
+
+.tpl-game .celebrate-message {
+  color: var(--gold);
+}
+
+.game-credits {
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.game-gg {
+  margin: 0 0 14px;
+  color: var(--accent);
+  font: 1rem/1.8 var(--pixel-font);
+}
+
+.tpl-game:lang(hi) .game-gg,
+.tpl-game:lang(mr) .game-gg {
+  font: 800 1.6rem "Baloo 2", sans-serif;
+}
+
+.game-thanks {
+  max-width: 24em;
+  margin: 0 auto 20px;
+  color: var(--muted);
+}

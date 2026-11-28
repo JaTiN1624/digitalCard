@@ -1,0 +1,439 @@
+/* Timeless Love — deep bottle green, ivory and antique brass; classic serif, roman numerals */
+.tpl-tl {
+  --bg: #f6f1e7;
+  --surface: #fffcf5;
+  --text: #2f3a33;
+  --muted: #6f776f;
+  --accent: #1f4a3a;
+  --accent-contrast: #fffcf5;
+  --gold: #b48a45;
+  --border: #e3d8c1;
+  --heading: #1f4a3a;
+  --display: "Playfair Display", "Tiro Devanagari Hindi", Georgia, serif;
+  --serif: "Cormorant Garamond", "Tiro Devanagari Hindi", Georgia, serif;
+  --sans: var(--serif);
+  --page-max: 100%;
+  --btn-radius: 2px;
+  --cover-bg: radial-gradient(circle at 50% 40%, #2a5a47, #12291f 75%);
+  --cover-ink: #f6f1e7;
+  --cover-muted: #cbbf9f;
+  --cover-accent: #efe2c4;
+
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  background: #f6f1e7;
+}
+
+.tpl-tl:lang(mr) {
+  --display: "Playfair Display", "Tiro Devanagari Marathi", Georgia, serif;
+  --serif: "Cormorant Garamond", "Tiro Devanagari Marathi", Georgia, serif;
+}
+
+.tpl-tl .btn {
+  background: var(--accent);
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.tpl-tl .btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* ---------- Clock cover ---------- */
+.tl-clock {
+  position: relative;
+  width: 230px;
+  height: 230px;
+}
+
+.tl-clock-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #fffaf0, #efe2c4 70%);
+  border: 10px solid #b48a45;
+  box-shadow: 0 0 0 3px #7d5a24, inset 0 0 20px rgba(125, 90, 36, 0.35), 0 30px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+.tl-tick {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 2px;
+  height: 14px;
+  margin-left: -1px;
+  background: #5c4520;
+  transform-origin: 50% 97px;
+  transform: rotate(var(--r));
+}
+
+.tl-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  background: #1f2a24;
+  border-radius: 2px;
+  transform-origin: 50% 100%;
+}
+
+.tl-hand.hour {
+  width: 6px;
+  height: 52px;
+  margin-left: -3px;
+}
+
+.tl-hand.minute {
+  width: 3px;
+  height: 80px;
+  margin-left: -1.5px;
+}
+
+.tl-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: #b48a45;
+}
+
+.tl-clock-glow {
+  position: absolute;
+  inset: 30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffaf0, transparent 70%);
+  pointer-events: none;
+}
+
+.cover-clock .cover-names {
+  font-family: var(--display);
+  font-style: italic;
+  color: #efe2c4;
+}
+
+/* ---------- Hero ---------- */
+.tl-hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.tl-numeral {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(180, 138, 69, 0.45);
+  font: 400 clamp(9rem, 48vw, 20rem) / 1 var(--display);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.tl-kicker {
+  position: relative;
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+:lang(hi) .tl-kicker,
+:lang(mr) .tl-kicker,
+:lang(hi) .tl-label,
+:lang(mr) .tl-label {
+  font-size: 1.05rem;
+  text-transform: none;
+}
+
+.tl-names {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  color: var(--heading);
+  font: italic 400 clamp(3rem, 15vw, 5.2rem) / 1.02 var(--display);
+}
+
+:lang(hi) .tl-names,
+:lang(mr) .tl-names {
+  font-style: normal;
+  line-height: 1.2;
+}
+
+.tl-amp {
+  color: var(--gold);
+  font-size: 0.55em;
+}
+
+.tl-line {
+  position: relative;
+  margin: 22px 0 6px;
+  font-size: 1.3rem;
+}
+
+.tl-since {
+  position: relative;
+  margin: 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.tl-photo {
+  max-width: 560px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+}
+
+/* ---------- Sections ---------- */
+.tl-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.tl-title {
+  margin: 0 0 30px;
+  color: var(--heading);
+  font: italic 400 clamp(2rem, 8vw, 2.6rem) / 1.2 var(--display);
+}
+
+.tl-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 1px;
+  margin: 16px auto 0;
+  background: var(--gold);
+}
+
+:lang(hi) .tl-title,
+:lang(mr) .tl-title {
+  font-style: normal;
+}
+
+.tl-label {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.tl-message {
+  margin: 0;
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+:lang(hi) .tl-message,
+:lang(mr) .tl-message {
+  font-style: normal;
+}
+
+.tl-host {
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+/* The couple's journey on a thread of years */
+.tl-thread {
+  position: relative;
+  display: grid;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tl-thread::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+}
+
+.tl-moment {
+  position: relative;
+  padding: 26px 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.tl-moment-year {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 2px 14px;
+  background: var(--accent);
+  color: #efe2c4;
+  font: 600 0.95rem var(--display);
+}
+
+.tl-moment-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin-bottom: 14px;
+  object-fit: cover;
+}
+
+.tl-moment h3 {
+  margin: 0 0 4px;
+  color: var(--heading);
+  font: 400 1.4rem var(--display);
+}
+
+.tl-moment p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tl-date {
+  display: inline-grid;
+  gap: 2px;
+  padding: 26px 48px;
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+}
+
+.tl-date strong {
+  color: var(--heading);
+  font: 400 4.4rem/1 var(--display);
+}
+
+.tl-date-time {
+  color: var(--muted);
+}
+
+.tpl-tl .countdown {
+  margin-top: 26px;
+}
+
+.tpl-tl .countdown-unit {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.tpl-tl .countdown-unit + .countdown-unit {
+  border-left: 1px solid var(--border);
+}
+
+.tpl-tl .countdown-value {
+  color: var(--heading);
+}
+
+.tl-programme {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tl-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.tl-row-time {
+  color: var(--gold);
+}
+
+.tl-row-name {
+  font-size: 1.25rem;
+}
+
+.tl-venue {
+  margin: 0;
+  color: var(--heading);
+  font: 400 1.5rem var(--display);
+}
+
+.tl-address {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.tl-map {
+  --map-radius: 2px;
+  filter: sepia(0.2) saturate(0.85);
+}
+
+.tl-rsvp {
+  padding: 28px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.tpl-tl .rsvp-form h3 {
+  color: var(--heading);
+  font: italic 400 1.6rem var(--display);
+}
+
+.tpl-tl .rsvp-form button {
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.tl-cheers {
+  padding: 15px 32px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--heading);
+  font: italic 1.25rem var(--display);
+  cursor: pointer;
+}
+
+.tpl-tl .celebrate-message {
+  color: var(--gold);
+}
+
+.tl-foot {
+  padding: 60px 24px 80px;
+  text-align: center;
+  background: #12291f;
+  color: #efe2c4;
+}
+
+.tl-heart {
+  color: var(--gold);
+  font-size: 2rem;
+}
+
+.tl-thanks {
+  max-width: 26em;
+  margin: 10px auto 22px;
+  font-style: italic;
+}
+
+.tl-foot .btn {
+  background: #b48a45;
+  color: #12291f;
+}
+
+.tl-foot .btn-ghost {
+  background: transparent;
+  color: #efe2c4;
+  border-color: rgba(239, 226, 196, 0.5);
+}

@@ -26,10 +26,17 @@ export const TEMPLATE_KEYS = [
   "bday-first",
   "bday-gaming",
   "bday-space",
+  "bday-safari",
+  "bday-carnival",
+  "bday-prince",
+  "bday-memories",
+  // anniversary & baby shower
+  "anniv-timeless",
+  "baby-pastel",
 ];
 
 // Must match OCCASIONS and SECTION_KEYS in web/src/utils/invitation.js
-export const OCCASIONS = ["WEDDING", "ENGAGEMENT", "HALDI", "MEHENDI", "SANGEET", "COCKTAIL", "RECEPTION", "CELEBRATION", "BIRTHDAY"];
+export const OCCASIONS = ["WEDDING", "ENGAGEMENT", "HALDI", "MEHENDI", "SANGEET", "COCKTAIL", "RECEPTION", "CELEBRATION", "BIRTHDAY", "ANNIVERSARY", "BABY_SHOWER"];
 export const SECTION_KEYS = [
   "date",
   "countdown",
@@ -106,6 +113,7 @@ export const invitationConfig = z.object({
   // Birthday invitations (occasion BIRTHDAY)
   celebrant: optionalText(100), // the birthday person's name
   age: z.number().int().min(1).max(120).optional(),
+  years: z.number().int().min(1).max(100).optional(), // anniversary: years married
   host: optionalText(200), // parents for a child's party, host for adults
   rsvpPhone: z
     .string()
@@ -116,6 +124,8 @@ export const invitationConfig = z.object({
   endDate: z.iso.datetime({ offset: true }).optional(),
   address: optionalText(500), // venue address (weddings take it from the main event)
   mapUrl: httpsUrl,
+  // Optional background music (https audio file); guests start it with the ♪ button
+  music: httpsUrl,
 });
 
 export const createInvitationBody = z.object({

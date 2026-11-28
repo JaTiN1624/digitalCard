@@ -1,0 +1,482 @@
+/* Retro Disco — 80s synthwave: magenta and cyan neon, chrome type, grid horizon */
+.tpl-disco {
+  --bg: #12051f;
+  --surface: #1d0a33;
+  --text: #f6e9ff;
+  --muted: #c3a6e0;
+  --accent: #ff4fa3;
+  --accent-contrast: #ffffff;
+  --gold: #ffd23f;
+  --border: #4a1f75;
+  --heading: #00e5ff;
+  --neon: "Monoton", "Baloo 2", cursive;
+  --display: "Righteous", "Baloo 2", sans-serif;
+  --serif: var(--display);
+  --sans: "Righteous", "Baloo 2", system-ui, sans-serif;
+  --page-max: 100%;
+  --btn-radius: 999px;
+  --ball-a: #a7b0d8;
+  --ball-b: #f3c6ff;
+  --vinyl-label: #ff4fa3;
+  --cover-bg: #0b0214;
+  --cover-ink: #fff;
+
+  font-family: var(--sans);
+  background: linear-gradient(#12051f, #1a0730 50%, #12051f);
+}
+
+.tpl-disco .btn {
+  background: var(--accent);
+  box-shadow: 0 0 18px rgba(255, 79, 163, 0.6);
+  font-family: var(--sans);
+}
+
+.tpl-disco .btn-ghost {
+  background: transparent;
+  color: var(--heading);
+  border: 2px solid var(--heading);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.4);
+}
+
+.neon-text,
+.disco-title,
+.disco-sign {
+  text-shadow: 0 0 6px currentColor, 0 0 18px currentColor;
+}
+
+/* ---------- Disco drop cover ---------- */
+.disco-cover {
+  position: relative;
+  width: min(320px, 86vw);
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.disco-beams {
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  width: 0;
+  height: 0;
+}
+
+.disco-beams span {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  width: 40px;
+  height: 420px;
+  transform-origin: 50% 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.35), transparent 80%);
+  clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
+  animation: disco-sweep 3.2s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -0.5s);
+  rotate: calc(-60deg + var(--i) * 24deg);
+  mix-blend-mode: screen;
+}
+
+.disco-beams span:nth-child(3n) { background: linear-gradient(rgba(255, 79, 163, 0.5), transparent 80%); }
+.disco-beams span:nth-child(3n + 1) { background: linear-gradient(rgba(0, 229, 255, 0.45), transparent 80%); }
+
+@keyframes disco-sweep {
+  to { transform: rotate(30deg); }
+}
+
+.disco-cover.is-on .disco-beams span {
+  animation-duration: 0.4s;
+}
+
+.disco-drop {
+  position: absolute;
+  top: -20px;
+  width: 130px;
+}
+
+.disco-drop .disco-ball {
+  color: #c3a6e0;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+.disco-cover-name {
+  position: relative;
+  margin: 0 0 20px;
+  color: #fff;
+  font: 400 clamp(2.4rem, 13vw, 3.6rem) / 1.1 var(--neon);
+  text-shadow: 0 0 8px #ff4fa3, 0 0 24px #ff4fa3;
+  animation: disco-beat 0.9s ease-in-out infinite;
+}
+
+.tpl-disco:lang(hi) .disco-cover-name,
+.tpl-disco:lang(mr) .disco-cover-name {
+  font: 800 3rem var(--sans);
+}
+
+@keyframes disco-beat {
+  50% { transform: scale(1.05); }
+}
+
+/* ---------- Synthwave hero ---------- */
+.disco-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 90px 16px 0;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(#0b0214 0%, #2a0845 45%, #6a1b6e 62%, #12051f 62.2%);
+}
+
+.disco-ball-hang {
+  position: absolute;
+  top: -10px;
+  right: 8%;
+  width: 90px;
+  animation: disco-swing 4s ease-in-out infinite;
+  transform-origin: 50% 0;
+}
+
+@keyframes disco-swing {
+  50% { transform: rotate(6deg); }
+}
+
+.disco-kicker {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: var(--heading);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--heading);
+}
+
+:lang(hi) .disco-kicker,
+:lang(mr) .disco-kicker {
+  text-transform: none;
+}
+
+.disco-name {
+  position: relative;
+  z-index: 2;
+  margin: 10px 0;
+  font: 400 clamp(3rem, 17vw, 6rem) / 1.05 var(--neon);
+  background: linear-gradient(#ffffff 0%, #ffd6f0 40%, #ff4fa3 52%, #ffe08a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 79, 163, 0.7));
+  word-break: break-word;
+}
+
+.tpl-disco:lang(hi) .disco-name,
+.tpl-disco:lang(mr) .disco-name {
+  font: 800 clamp(3rem, 16vw, 5rem) / 1.2 var(--sans);
+}
+
+.disco-line {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: var(--gold);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(255, 210, 63, 0.7);
+}
+
+.disco-sun {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 260px;
+  height: 130px;
+  margin-left: -130px;
+  border-radius: 130px 130px 0 0;
+  background:
+    repeating-linear-gradient(transparent 0 14px, #2a0845 14px 18px) 0 60% / 100% 100% no-repeat,
+    linear-gradient(#ffe08a, #ff4fa3 70%);
+  opacity: 0.85;
+}
+
+.disco-grid {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 38%;
+  background:
+    linear-gradient(90deg, rgba(0, 229, 255, 0.7) 2px, transparent 2px) 0 0 / 60px 60px,
+    linear-gradient(rgba(255, 79, 163, 0.7) 2px, transparent 2px) 0 0 / 60px 60px;
+  transform: perspective(300px) rotateX(60deg);
+  transform-origin: 50% 0;
+  animation: disco-grid 1.6s linear infinite;
+}
+
+@keyframes disco-grid {
+  to { background-position: 0 60px, 0 60px; }
+}
+
+/* ---------- Sections ---------- */
+.disco-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 54px 20px;
+  text-align: center;
+}
+
+.disco-title {
+  margin: 0 0 22px;
+  color: var(--heading);
+  font: 400 clamp(1.9rem, 8vw, 2.6rem) / 1.15 var(--display);
+}
+
+.disco-side {
+  margin: 0;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+:lang(hi) .disco-side,
+:lang(mr) .disco-side {
+  text-transform: none;
+}
+
+.disco-quote {
+  padding: 26px 22px;
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 79, 163, 0.4), inset 0 0 20px rgba(255, 79, 163, 0.2);
+  font-size: 1.25rem;
+}
+
+.disco-quote p {
+  margin: 0;
+}
+
+.disco-host {
+  margin-top: 12px !important;
+  color: var(--muted);
+}
+
+.disco-photo {
+  max-width: 520px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid var(--heading);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.5);
+}
+
+/* Flickering neon date sign */
+.disco-sign {
+  display: inline-grid;
+  gap: 2px;
+  padding: 22px 34px;
+  border: 3px solid currentColor;
+  border-radius: 18px;
+  color: #ff4fa3;
+  animation: disco-flicker 5s infinite;
+}
+
+@keyframes disco-flicker {
+  0%, 18%, 22%, 62%, 64%, 100% { opacity: 1; }
+  20%, 63% { opacity: 0.4; }
+}
+
+.disco-sign-day {
+  color: var(--heading);
+}
+
+.disco-sign-date {
+  font: 400 clamp(2.4rem, 12vw, 3.4rem) / 1.1 var(--neon);
+}
+
+.tpl-disco:lang(hi) .disco-sign-date,
+.tpl-disco:lang(mr) .disco-sign-date {
+  font: 800 2.6rem var(--sans);
+}
+
+.disco-sign-time {
+  color: var(--gold);
+}
+
+.tpl-disco .countdown {
+  margin-top: 26px;
+}
+
+.tpl-disco .countdown-unit {
+  background: #0b0214;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.tpl-disco .countdown-value {
+  color: var(--gold);
+  font-family: var(--display);
+  text-shadow: 0 0 10px rgba(255, 210, 63, 0.7);
+}
+
+/* Record sleeve tracklist */
+.disco-sleeve {
+  position: relative;
+  padding-top: 110px;
+}
+
+.disco-vinyl {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 200px;
+  margin-left: -100px;
+  animation: cosmic-vinyl 3s linear infinite;
+}
+
+@keyframes cosmic-vinyl {
+  to { transform: rotate(360deg); }
+}
+
+.disco-sleeve-card {
+  position: relative;
+  padding: 110px 22px 26px;
+  background: linear-gradient(135deg, #ff4fa3 0%, #b84dff 50%, #00e5ff 100%);
+  border-radius: 6px;
+  color: #12051f;
+  text-align: left;
+}
+
+.disco-sleeve-card .disco-title {
+  color: #12051f;
+  text-shadow: none;
+}
+
+.disco-sleeve-card .disco-side {
+  color: #12051f;
+  opacity: 0.7;
+}
+
+.disco-tracks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.disco-track {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(18, 5, 31, 0.3);
+  font-size: 1.15rem;
+}
+
+.disco-track-no,
+.disco-track-time {
+  opacity: 0.75;
+}
+
+.disco-venue {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.disco-address,
+.disco-dress {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+/* Light-up dance floor */
+.disco-floor {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin: 22px 0 0;
+  transform: perspective(400px) rotateX(35deg);
+}
+
+.disco-floor span {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: #2a0845;
+  animation: disco-tile 2.2s steps(1) infinite;
+  animation-delay: calc(var(--i) * -0.2s);
+}
+
+.disco-floor span:nth-child(3n) { --c: #ff4fa3; }
+.disco-floor span:nth-child(3n + 1) { --c: #00e5ff; }
+.disco-floor span:nth-child(3n + 2) { --c: #ffd23f; }
+
+@keyframes disco-tile {
+  0%, 60% { background: #2a0845; }
+  30% { background: var(--c); box-shadow: 0 0 14px var(--c); }
+}
+
+.disco-map {
+  --map-radius: 16px;
+  border: 2px solid var(--heading);
+}
+
+.disco-panel {
+  padding: 24px 20px;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  text-align: left;
+}
+
+.tpl-disco .rsvp-form h3 {
+  color: var(--heading);
+}
+
+.tpl-disco .rsvp-form input:not([type="radio"]),
+.tpl-disco .rsvp-form textarea {
+  background: #0b0214;
+  border-color: var(--border);
+}
+
+.tpl-disco .rsvp-form button {
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 18px rgba(255, 79, 163, 0.6);
+}
+
+.disco-dance {
+  padding: 18px 34px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff4fa3, #b84dff, #00e5ff);
+  color: #fff;
+  font: 1.3rem var(--display);
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(184, 77, 255, 0.7);
+}
+
+.tpl-disco .celebrate-message {
+  color: var(--gold);
+}
+
+.disco-foot {
+  padding: 50px 20px 80px;
+  text-align: center;
+}
+
+.disco-thanks {
+  max-width: 24em;
+  margin: 0 auto 20px;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disco-grid,
+  .disco-floor span,
+  .disco-sign,
+  .disco-vinyl,
+  .disco-beams span {
+    animation: none;
+  }
+}

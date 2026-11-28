@@ -11,10 +11,34 @@ import { isHidden } from "../../../utils/invitation.js";
 const part = (value, language, options) =>
   new Intl.DateTimeFormat(LOCALES[language] ?? "en-IN", { timeZone: "Asia/Kolkata", ...options }).format(new Date(value));
 
+// Google Calendar (Android) and .ics (iPhone / Outlook) buttons for the main event
+export function CalendarButtons({ invitation, t, className = "sec-actions" }) {
+  const { eventDate, title, config, slug } = invitation;
+  if (!eventDate) return null;
+  const end = config.endDate && new Date(config.endDate) > new Date(eventDate) ? config.endDate : null;
+  const calendar = { title, start: eventDate, end, location: config.venue, details: config.message };
+  const google = googleCalendarUrl(calendar);
+  const ics = icsDataUrl(calendar);
+  return (
+    <div className={className}>
+      {google && (
+        <a className="btn" href={google} target="_blank" rel="noopener noreferrer">
+          {t("date.googleCalendar")}
+        </a>
+      )}
+      {ics && (
+        <a className="btn btn-ghost" href={ics} download={`${slug || "invitation"}.ics`}>
+          {t("date.appleCalendar")}
+        </a>
+      )}
+    </div>
+  );
+}
+
 // Save the date: the date itself (optionally inside the golden ribbon), live countdown and
 // "add to calendar" for Google (Android) and .ics (iPhone / Outlook).
 export default function SaveTheDate({ invitation, t, ribbon = false, celebrateOnView = false, ornament }) {
-  const { eventDate, language, title, config, slug } = invitation;
+  const { eventDate, language, config } = invitation;
   const dateRef = useRef(null);
   const inView = useInView(dateRef, { once: true, amount: 0.7 });
   const celebrate = useCelebrate();
@@ -27,10 +51,6 @@ export default function SaveTheDate({ invitation, t, ribbon = false, celebrateOn
   if (!eventDate) return null;
 
   const end = config.endDate && new Date(config.endDate) > new Date(eventDate) ? config.endDate : null;
-  const calendar = { title, start: eventDate, end, location: config.venue, details: config.message };
-  const google = googleCalendarUrl(calendar);
-  const ics = icsDataUrl(calendar);
-
   const body = (
     <div className="date-body">
       <p className="date-label">{t("date.invited")}</p>
@@ -63,18 +83,7 @@ export default function SaveTheDate({ invitation, t, ribbon = false, celebrateOn
         <Countdown target={eventDate} language={language} t={t} showTitle={false} />
       )}
 
-      <div className="sec-actions">
-        {google && (
-          <a className="btn" href={google} target="_blank" rel="noopener noreferrer">
-            {t("date.googleCalendar")}
-          </a>
-        )}
-        {ics && (
-          <a className="btn btn-ghost" href={ics} download={`${slug || "invitation"}.ics`}>
-            {t("date.appleCalendar")}
-          </a>
-        )}
-      </div>
+      <CalendarButtons invitation={invitation} t={t} />
     </section>
   );
 }

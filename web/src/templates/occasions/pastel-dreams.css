@@ -1,0 +1,398 @@
+/* Pastel Dreams — watercolour peach, mint and lilac, soft rounded serif, hanging stars */
+.tpl-pd {
+  --bg: #fdf6f2;
+  --surface: #ffffff;
+  --text: #55485e;
+  --muted: #8f8197;
+  --accent: #9b7fc9;
+  --accent-contrast: #ffffff;
+  --gold: #e8b86a;
+  --border: #efe2ea;
+  --heading: #7d62ad;
+  --display: "Fraunces", "Tiro Devanagari Hindi", Georgia, serif;
+  --serif: var(--display);
+  --sans: "Baloo 2", system-ui, sans-serif;
+  --page-max: 100%;
+  --btn-radius: 999px;
+  --moon: #ffe3a8;
+  --cover-bg: linear-gradient(#e9e0fb, #fde4e8 60%, #e4f4ee);
+  --cover-ink: #55485e;
+  --cover-accent: #7d62ad;
+
+  font-family: var(--sans);
+  font-size: 1.06rem;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(246, 193, 204, 0.35), transparent 40%),
+    radial-gradient(ellipse at 90% 50%, rgba(191, 227, 214, 0.35), transparent 40%),
+    radial-gradient(ellipse at 20% 85%, rgba(205, 189, 242, 0.35), transparent 40%),
+    #fdf6f2;
+}
+
+.tpl-pd .btn {
+  background: var(--accent);
+  font-family: var(--sans);
+  font-weight: 700;
+}
+
+.tpl-pd .btn-ghost {
+  background: #fff;
+  color: var(--heading);
+  border: 1px solid #d9cbef;
+}
+
+.tpl-pd .star-art {
+  color: var(--gold);
+}
+
+/* ---------- Cot mobile cover ---------- */
+.pd-mobile {
+  position: relative;
+  width: min(300px, 80vw);
+  height: 280px;
+  transform-origin: 50% 0;
+}
+
+.pd-mobile-bar {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 10px;
+  height: 6px;
+  border-radius: 3px;
+  background: #d9cbef;
+}
+
+.pd-mobile-bar::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  width: 2px;
+  height: 40px;
+  background: #bdaee0;
+}
+
+.pd-hanger {
+  position: absolute;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  translate: -50% 0;
+  animation: pd-sway 3.4s ease-in-out infinite alternate;
+  animation-delay: var(--d);
+  transform-origin: 50% 0;
+}
+
+.pd-string {
+  width: 1px;
+  height: var(--len);
+  background: #bdaee0;
+}
+
+.pd-hanger svg {
+  width: 40px;
+}
+
+.pd-moon svg {
+  width: 70px;
+}
+
+.pd-cloud svg,
+.pd-hanger.pd-cloud svg {
+  width: 64px;
+}
+
+@keyframes pd-sway {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(6deg); }
+}
+
+.cover-mobile .cover-names {
+  font-family: var(--display);
+  color: var(--heading);
+}
+
+/* ---------- Hero ---------- */
+.pd-hero {
+  position: relative;
+  min-height: 94svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 22px 60px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.pd-stars {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid #e6dbf5;
+}
+
+.pd-hang {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: pd-sway 4s ease-in-out infinite alternate;
+  animation-delay: var(--d);
+  transform-origin: 50% 0;
+}
+
+.pd-hang::before {
+  content: "";
+  width: 1px;
+  height: var(--len);
+  background: #cdbfe6;
+}
+
+.pd-hang svg {
+  width: 26px;
+}
+
+.pd-oh {
+  margin: 0;
+  color: var(--heading);
+  font: italic 600 clamp(3.2rem, 16vw, 5rem) / 1 var(--display);
+}
+
+:lang(hi) .pd-oh,
+:lang(mr) .pd-oh {
+  font-style: normal;
+  font-size: clamp(2.6rem, 13vw, 4rem);
+  line-height: 1.25;
+}
+
+.pd-for {
+  margin: 18px 0 0;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.pd-name {
+  margin: 4px 0 0;
+  color: #d1789a;
+  font: 400 clamp(2.4rem, 12vw, 3.6rem) / 1.1 var(--display);
+}
+
+.pd-way {
+  margin: 18px 0 0;
+  font-size: 1.15rem;
+}
+
+.pd-cloud {
+  position: absolute;
+  opacity: 0.9;
+}
+
+.pd-cloud.c1 { left: -30px; bottom: 16%; width: 130px; }
+.pd-cloud.c2 { right: -40px; bottom: 6%; width: 170px; }
+
+.pd-photo {
+  width: min(300px, 80vw);
+  margin: 0 auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  box-shadow: 0 0 0 6px #f6dfe6;
+}
+
+/* ---------- Sections ---------- */
+.pd-sec {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 56px 22px;
+  text-align: center;
+}
+
+.pd-title {
+  margin: 0 0 26px;
+  color: var(--heading);
+  font: italic 400 clamp(1.9rem, 8vw, 2.4rem) / 1.2 var(--display);
+}
+
+:lang(hi) .pd-title,
+:lang(mr) .pd-title {
+  font-style: normal;
+}
+
+/* Scalloped note */
+.pd-note {
+  padding: 40px 30px;
+  background: #fff;
+  -webkit-mask:
+    radial-gradient(circle 12px at 12px 12px, #000 98%, transparent) -12px -12px / 24px 24px round,
+    linear-gradient(#000, #000) center / calc(100% - 24px) calc(100% - 24px) no-repeat;
+  mask:
+    radial-gradient(circle 12px at 12px 12px, #000 98%, transparent) -12px -12px / 24px 24px round,
+    linear-gradient(#000, #000) center / calc(100% - 24px) calc(100% - 24px) no-repeat;
+  filter: drop-shadow(0 10px 20px rgba(125, 98, 173, 0.15));
+}
+
+.pd-message {
+  margin: 0;
+  font: italic 400 1.3rem/1.6 var(--display);
+}
+
+:lang(hi) .pd-message,
+:lang(mr) .pd-message {
+  font-style: normal;
+}
+
+.pd-host {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+/* Date, time and place as three soft bubbles */
+.pd-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pd-bubble {
+  display: grid;
+  place-content: center;
+  width: 150px;
+  height: 150px;
+  padding: 14px;
+  border-radius: 50%;
+  line-height: 1.25;
+}
+
+.pd-bubble.b1 { background: #fde4e8; }
+.pd-bubble.b2 { background: #e4f4ee; margin-top: 40px; }
+.pd-bubble.b3 { background: #ece4fb; width: 170px; height: 170px; }
+
+.pd-bubble-big {
+  color: var(--heading);
+  font: 600 3rem/1 var(--display);
+}
+
+.pd-bubble-mid {
+  color: var(--heading);
+  font: 600 1.4rem var(--display);
+}
+
+.pd-bubble-venue {
+  font: 600 1.05rem/1.3 var(--display);
+}
+
+.tpl-pd .countdown {
+  margin-top: 26px;
+}
+
+.tpl-pd .countdown-unit {
+  border-color: var(--border);
+  border-radius: 999px;
+}
+
+.tpl-pd .countdown-value {
+  color: var(--heading);
+}
+
+.pd-plan {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pd-plan-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px dashed #d9cbef;
+}
+
+.pd-plan-time {
+  color: var(--muted);
+}
+
+.pd-plan-name {
+  font-weight: 700;
+  text-align: right;
+}
+
+.pd-venue-card,
+.pd-rsvp {
+  padding: 26px 22px;
+  background: #fff;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+}
+
+.pd-rsvp {
+  text-align: left;
+}
+
+.pd-venue {
+  margin: 0;
+  color: var(--heading);
+  font: 600 1.4rem var(--display);
+}
+
+.pd-address {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.pd-map {
+  --map-radius: 22px;
+}
+
+.tpl-pd .rsvp-form h3 {
+  color: var(--heading);
+  font: italic 400 1.6rem var(--display);
+}
+
+.tpl-pd .rsvp-form input:not([type="radio"]),
+.tpl-pd .rsvp-form textarea {
+  border-radius: 14px;
+}
+
+.tpl-pd .rsvp-form button {
+  border-radius: 999px;
+  background: linear-gradient(135deg, #b8a3e0, #f0a9bf);
+}
+
+.pd-shower {
+  padding: 16px 34px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fde4e8, #ece4fb);
+  color: var(--heading);
+  font: italic 600 1.3rem var(--display);
+  box-shadow: 0 8px 20px -10px rgba(125, 98, 173, 0.5);
+  cursor: pointer;
+}
+
+.tpl-pd .celebrate-message {
+  color: #d1789a;
+}
+
+.pd-foot {
+  padding: 60px 22px 80px;
+  text-align: center;
+}
+
+.pd-foot-moon {
+  width: 70px;
+}
+
+.pd-thanks {
+  max-width: 24em;
+  margin: 12px auto 22px;
+}

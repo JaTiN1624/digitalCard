@@ -3,8 +3,43 @@ export const LOCALES = { EN: "en-IN", HI: "hi-IN", MR: "mr-IN" };
 
 const locale = (language) => LOCALES[language] ?? "en-IN";
 
+// Hindi/Marathi times the way people write them on invitations: "शाम 6:30 बजे",
+// "संध्याकाळी ६:३० वाजता" — the browser's own format mixes in "pm"/"PM".
+const DAY_PARTS = {
+  HI: { morning: "सुबह", afternoon: "दोपहर", evening: "शाम", night: "रात", suffix: "बजे", joiner: "को" },
+  MR: { morning: "सकाळी", afternoon: "दुपारी", evening: "संध्याकाळी", night: "रात्री", suffix: "वाजता", joiner: "रोजी" },
+};
+
+function indianTime(value, language) {
+  const words = DAY_PARTS[language];
+  const parts = new Intl.DateTimeFormat("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+    hourCycle: "h23",
+    timeZone: "Asia/Kolkata",
+  }).formatToParts(new Date(value));
+  const hour = Number(parts.find((p) => p.type === "hour").value);
+  const minute = Number(parts.find((p) => p.type === "minute").value);
+  const part =
+    hour >= 4 && hour < 12 ? words.morning : hour < 16 && hour >= 12 ? words.afternoon : hour >= 16 && hour < 20 ? words.evening : words.night;
+  const num = (n) => formatNumber(n, language);
+  const clock = minute === 0 ? num(hour % 12 || 12) : `${num(hour % 12 || 12)}:${num(minute).padStart(2, num(0))}`;
+  return `${part} ${clock} ${words.suffix}`;
+}
+
 export function formatEventDate(value, language = "EN") {
   if (!value) return null;
+  const date = new Date(value);
+  if (DAY_PARTS[language]) {
+    const day = new Intl.DateTimeFormat(locale(language), {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "Asia/Kolkata",
+    }).format(date);
+    return `${day} ${DAY_PARTS[language].joiner} ${indianTime(date, language)}`;
+  }
   return new Intl.DateTimeFormat(locale(language), {
     weekday: "long",
     day: "numeric",
@@ -13,7 +48,7 @@ export function formatEventDate(value, language = "EN") {
     hour: "numeric",
     minute: "2-digit",
     timeZone: "Asia/Kolkata",
-  }).format(new Date(value));
+  }).format(date);
 }
 
 export function formatNumber(value, language = "EN") {
@@ -65,9 +100,10 @@ export function formatShortDate(value, language = "EN") {
   }).format(new Date(value));
 }
 
-// Time only, e.g. "6:30 pm"
+// Time only, e.g. "6:30 pm" / "शाम 6:30 बजे" / "संध्याकाळी ६:३० वाजता"
 export function formatTime(value, language = "EN") {
   if (!value) return null;
+  if (DAY_PARTS[language]) return indianTime(value, language);
   return new Intl.DateTimeFormat(locale(language), {
     hour: "numeric",
     minute: "2-digit",
