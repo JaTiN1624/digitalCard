@@ -3,7 +3,7 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/api/:path*", "destination": "https://digitalcard-ptr3.onrender.com/api/:path*" },
-    { "source": "/(.*)", "destination": "/app.html" }
+    { "source": "/(.*)", "destination": "/app" }
   ],
   "headers": [
     { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
